@@ -1,25 +1,26 @@
 export const cutup = {
-  srcText: "",
-  splitPoint: { start: [""], end: [""], middle: [""] },
-  lower: 0,
-  upper: 0,
+  init: function (props = undefined) {
+    if (props !== undefined) {
+      this.srcText = props.srcText;
+      this.splitPoint = props.splitPoint;
+      this.lower = props.lower;
+      this.upper = props.upper;
+      return;
+    }
 
-  init: function () {
     this.srcText = document.getElementById("src").value;
-    this.splitPoint = {
-      start: document.getElementById("start").value.split(","),
-      end: document.getElementById("end").value.split(","),
-      middle: document.getElementById("middle").value.split(","),
-    };
     this.lower = parseInt(document.getElementById("lower").value);
     this.upper = parseInt(document.getElementById("upper").value);
-  },
 
-  manualInit: function (srcText, splitPoint, lower, upper) {
-    this.srcText = srcText;
-    this.splitPoint = splitPoint;
-    this.lower = lower;
-    this.upper = upper;
+    let start = document.getElementById("start").value.split(",");
+    let end = document.getElementById("end").value.split(",");
+    let middle = document.getElementById("middle").value.split(",");
+
+    this.splitPoint = {};
+
+    start.forEach((seg) => (this.splitPoint[seg] = 0));
+    end.forEach((seg) => (this.splitPoint[seg] = 1));
+    middle.forEach((seg, i) => (this.splitPoint[seg] = i + 2));
   },
 
   run: function () {
