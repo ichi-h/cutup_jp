@@ -22,7 +22,12 @@ test("文章の分割", () => {
     "、": 12,
   };
 
-  cutup.manualInit(srcText, splitPoint, 20, 30);
+  cutup.init({
+    srcText: srcText,
+    splitPoint: splitPoint,
+    lower: 20,
+    upper: 30,
+  });
 
   let expected = [
     {
