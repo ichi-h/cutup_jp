@@ -11,7 +11,7 @@ export const cutup = {
       return;
     }
 
-    this.srcText = document.getElementById("src").value;
+    this.srcText = document.getElementById("src").value.replaceAll("\n", "");
     this.lower = parseInt(document.getElementById("lower").value);
     this.upper = parseInt(document.getElementById("upper").value);
 
