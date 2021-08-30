@@ -12,7 +12,8 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.5",
+    "tiny-segmenter": "^0.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
