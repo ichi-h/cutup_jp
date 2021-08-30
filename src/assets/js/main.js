@@ -1,3 +1,6 @@
+import TinySegmenter from "tiny-segmenter";
+import { pipe } from "./pipe";
+
 export const cutup = {
   init: function (props = undefined) {
     if (props !== undefined) {
@@ -33,7 +36,39 @@ export const cutup = {
     console.log(this);
   },
 
-  splitText: function () {},
+  splitText: function () {
+    const createSegments = () => {
+      let segmenter = new TinySegmenter();
+      return segmenter.segment(this.srcText);
+    };
+
+    const createSentenceList = (i, value, head, list) => (segs) => {
+      if (i === segs.length - 1) {
+        return list.concat({
+          value: value + segs[i],
+          head: head,
+          tail: 1,
+        });
+      }
+
+      if (!this.splitPoint[segs[i]]) {
+        return createSentenceList(i + 1, value + segs[i], head, list)(segs);
+      }
+
+      return createSentenceList(
+        i + 1,
+        segs[i],
+        this.splitPoint[segs[i]],
+        list.concat({
+          value: value,
+          head: head,
+          tail: this.splitPoint[segs[i]],
+        })
+      )(segs);
+    };
+
+    return pipe()(createSegments, createSentenceList(0, "", 0, []));
+  },
 };
 
 window.cutup = function () {
