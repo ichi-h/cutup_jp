@@ -7,7 +7,7 @@
   "license": "Mozilla Public License 2.0",
   "scripts": {
     "build": "",
-    "start": "",
+    "dev": "parcel ./src/index.html",
     "test": "",
     "format": "prettier --write ."
   },
