@@ -20,7 +20,7 @@ test("文章の分割", () => {
     ],
   };
 
-  let expect = [
+  let expected = [
     {
       value: "すももも",
       head: 0,
@@ -45,5 +45,5 @@ test("文章の分割", () => {
 
   cutup.manualInit(srcText, splitPoint, 20, 30);
 
-  expect(cutup.splitText()).toBe(expect);
+  expect(cutup.splitText()).toStrictEqual(expected);
 });
