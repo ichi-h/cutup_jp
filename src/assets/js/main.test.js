@@ -1,4 +1,4 @@
-import { splitText } from "./main";
+import { cutup } from "./main";
 
 test("文章の分割", () => {
   let srcText = "すもももももももものうち";
@@ -43,5 +43,7 @@ test("文章の分割", () => {
     },
   ];
 
-  expect(splitText(srcText, splitPoint)).toBe(expect);
+  cutup.manualInit(srcText, splitPoint, 20, 30);
+
+  expect(cutup.splitText()).toBe(expect);
 });
