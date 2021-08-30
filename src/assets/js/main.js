@@ -33,7 +33,10 @@ export const cutup = {
       );
       return;
     }
-    console.log(this);
+
+    let sentences = this.splitText();
+    let result = this.combineSentence(0, sentences, "");
+    this.updateTextarea(result);
   },
 
   splitText: function () {
@@ -82,9 +85,50 @@ export const cutup = {
 
     return pipe()(createSegments, createSentenceList(0, "", 0, []));
   },
+
+  pickupSentence: function (target, sentences) {
+    let selected = sentences.filter((sentence) => target === sentence.head);
+
+    let i = Math.floor(Math.random() * selected.length);
+
+    return selected[i];
+  },
+
+  combineSentence: function (target, sentences, result) {
+    if (this.upper < result.length) {
+      return this.combineSentence(0, sentences, "");
+    }
+
+    if (this.lower <= result.length) {
+      return result;
+    }
+
+    let sentence = this.pickupSentence(target, sentences);
+
+    let newTarget = (target) => {
+      if (target === 1) return 0;
+      else return target;
+    };
+
+    return this.combineSentence(
+      newTarget(sentence.tail),
+      sentences,
+      result + sentence.value
+    );
+  },
+
+  updateTextarea: function (result) {
+    let textarea = document.getElementById("result");
+    textarea.value = result;
+    return 0;
+  },
 };
 
 window.cutup = function () {
-  cutup.init();
-  cutup.run();
+  try {
+    cutup.init();
+    cutup.run();
+  } catch (e) {
+    alert("文章生成中にエラーが発生しました。\n" + e);
+  }
 };
