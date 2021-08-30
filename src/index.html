@@ -16,8 +16,43 @@
       </div>
 
       <div class="l-form">
-        <textarea name="input" id="" cols="30" rows="10"></textarea>
-        <button>生成</button>
+        <form action="">
+          <textarea name="input" id="" cols="30" rows="10" required></textarea>
+
+          <details>
+            <summary>詳細設定</summary>
+            <ul>
+              <li>区切り文字</li>
+              <ul>
+                <li>
+                  文頭: <input type="text" name="start" id="start" required />
+                </li>
+                <li>
+                  文末: <input type="text" name="end" id="end" required />
+                </li>
+                <li>
+                  文中:
+                  <input type="text" name="middle" id="middle" required />
+                </li>
+              </ul>
+              <li>文の長さ</li>
+              <ul>
+                <li>
+                  下限:
+                  <input type="number" name="lower" id="lower" required />
+                </li>
+                <li>
+                  上限: <input type="number" name="upper" id="upper" required />
+                </li>
+              </ul>
+            </ul>
+          </details>
+
+          <button type="submit">生成</button>
+        </form>
+      </div>
+
+      <div class="l-result">
         <textarea name="output" id="" cols="30" rows="10"></textarea>
       </div>
 

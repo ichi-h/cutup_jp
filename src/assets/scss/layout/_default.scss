@@ -8,7 +8,9 @@
   min-height: 100vh;
 }
 
-.l-desc {
+.l-desc,
+.l-form,
+.l-result {
   padding: 2rem;
 }
 
@@ -18,8 +20,6 @@
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
-
-  padding: 2rem;
 }
 
 .l-footer {
