@@ -1,0 +1,28 @@
+.l-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  min-height: 100vh;
+}
+
+.l-desc {
+  padding: 2rem;
+}
+
+.l-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  padding: 2rem;
+}
+
+.l-footer {
+  position: absolute;
+  bottom: 0;
+}
