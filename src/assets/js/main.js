@@ -55,6 +55,19 @@ export const cutup = {
         return createSentenceList(i + 1, value + segs[i], head, list)(segs);
       }
 
+      if (this.splitPoint[segs[i]] === 1) {
+        return createSentenceList(
+          i + 2,
+          segs[i + 1],
+          0,
+          list.concat({
+            value: value + segs[i],
+            head: head,
+            tail: 1,
+          })
+        )(segs);
+      }
+
       return createSentenceList(
         i + 1,
         segs[i],
