@@ -29,8 +29,13 @@ export const cutup = {
   run: function () {
     if (this.lower > this.upper) {
       alert(
-        "下限よりも上限の値の方が小さくなっています。\n上限の値の方が大きくなるよう設定してください。"
+        "下限よりも上限の値の方が小さくなっています。\n上限の方が大きくなるよう設定してください。"
       );
+      return;
+    }
+
+    if (this.srcText.length < this.lower) {
+      alert("下限は入力された文章の文字数よりも小さくする必要があります。");
       return;
     }
 
