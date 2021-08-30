@@ -99,7 +99,7 @@ export const cutup = {
       return this.combineSentence(0, sentences, "");
     }
 
-    if (this.lower <= result.length) {
+    if (this.lower <= result.length && target === 0) {
       return result;
     }
 
