@@ -4,7 +4,7 @@
   "description": "日本語の文章をカットアップするWebアプリケーション",
   "repository": "https://github.com/ippee/cutup_jp",
   "author": "ippee",
-  "license": "Mozilla Public License 2.0",
+  "license": "MPL-2.0",
   "scripts": {
     "build": "",
     "dev": "parcel ./src/index.html",
