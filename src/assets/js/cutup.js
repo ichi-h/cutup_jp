@@ -1,8 +1,7 @@
 import TinySegmenter from "tiny-segmenter";
-import { pipe } from "./pipe";
 
-export const cutup = {
-  init: function (model) {
+export class Cutup {
+  constructor(model) {
     this.src = model.src.replace(/\n/g, "");
     this.lower = model.lower;
     this.upper = model.upper;
@@ -12,9 +11,9 @@ export const cutup = {
     model.start.split(",").forEach((seg) => (this.splitPoint[seg] = 0));
     model.end.split(",").forEach((seg) => (this.splitPoint[seg] = 1));
     model.middle.split(",").forEach((seg, i) => (this.splitPoint[seg] = i + 2));
-  },
+  }
 
-  run: function () {
+  generateText() {
     if (this.lower > this.upper) {
       alert(
         "下限よりも上限の値の方が小さくなっています。\n上限の方が大きくなるよう設定してください。"
@@ -28,17 +27,16 @@ export const cutup = {
     }
 
     let sentences = this.splitText();
-    let result = this.combineSentence(0, sentences, "");
-    this.updateTextarea(result);
-  },
+    return this.combineSentences(0, sentences, "");
+  }
 
-  splitText: function () {
+  splitText() {
     const createSegments = () => {
       let segmenter = new TinySegmenter();
       return segmenter.segment(this.src);
     };
 
-    const createSentenceList = (i, value, head, list) => (segs) => {
+    const createSentences = (i, value, head, list, segs) => {
       if (i === segs.length - 1) {
         return list.concat({
           value: value + segs[i],
@@ -48,11 +46,11 @@ export const cutup = {
       }
 
       if (!this.splitPoint[segs[i]]) {
-        return createSentenceList(i + 1, value + segs[i], head, list)(segs);
+        return createSentences(i + 1, value + segs[i], head, list, segs);
       }
 
       if (this.splitPoint[segs[i]] === 1) {
-        return createSentenceList(
+        return createSentences(
           i + 2,
           segs[i + 1],
           0,
@@ -60,11 +58,12 @@ export const cutup = {
             value: value + segs[i],
             head: head,
             tail: 1,
-          })
-        )(segs);
+          }),
+          segs
+        );
       }
 
-      return createSentenceList(
+      return createSentences(
         i + 1,
         segs[i],
         this.splitPoint[segs[i]],
@@ -72,47 +71,40 @@ export const cutup = {
           value: value,
           head: head,
           tail: this.splitPoint[segs[i]],
-        })
-      )(segs);
+        }),
+        segs
+      );
     };
 
-    return pipe()(createSegments, createSentenceList(0, "", 0, []));
-  },
+    let segs = createSegments();
+    return createSentences(0, "", 0, [], segs);
+  }
 
-  pickupSentence: function (target, sentences) {
+  pickupSentences(target, sentences) {
     let selected = sentences.filter((sentence) => target === sentence.head);
-
     let i = Math.floor(Math.random() * selected.length);
-
     return selected[i];
-  },
+  }
 
-  combineSentence: function (target, sentences, result) {
+  combineSentences(target, sentences, result) {
     if (this.upper < result.length) {
-      return this.combineSentence(0, sentences, "");
+      return this.combineSentences(0, sentences, "");
     }
 
     if (this.lower <= result.length && target === 0) {
       return result;
     }
 
-    let sentence = this.pickupSentence(target, sentences);
-
+    let sentence = this.pickupSentences(target, sentences);
     let newTarget = (target) => {
       if (target === 1) return 0;
       else return target;
     };
 
-    return this.combineSentence(
+    return this.combineSentences(
       newTarget(sentence.tail),
       sentences,
       result + sentence.value
     );
-  },
-
-  updateTextarea: function (result) {
-    let textarea = document.getElementById("result");
-    textarea.value = result;
-    return 0;
-  },
-};
+  }
+}

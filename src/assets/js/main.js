@@ -1,4 +1,4 @@
-import { cutup } from "./cutup";
+import { Cutup } from "./cutup";
 
 const model = {
   src: `　晴れた秋の夜は星の瞬きが、いつもより、ずっとヴィヴィットである。ことに月のない夜は星の光が一層燦然として美しい。それ等の星々をじっと凝視していると、光の強い大きな星は段々とこちらに向って動いて来るような気がして怖いようだ。事実太洋を航海しているとき闇夜の海上の彼方から一点の光がこちらに向って近づいて来る。何であろうと一心にそれを見守っていると、突然その光の下に黒々とした山のような巨船の姿を見出してびっくりしたことがある。星を見詰めていると何か判らない巨大なものがその星を乗せてこちらに迫って来るような気がする時もある。そういう錯覚は一種の恐怖に似て神秘的な楽しさでもある。
@@ -18,6 +18,7 @@ const model = {
   middle: "は,へ,を,の,で,から,に,て,が,も,、",
   lower: 50,
   upper: 60,
+  result: "",
 };
 
 const msg = {
@@ -58,8 +59,9 @@ const update = (msg, props = {}) => {
 
     case "cutup":
       try {
-        cutup.init(model);
-        cutup.run();
+        let cutup = new Cutup(model);
+        model.result = cutup.generateText();
+        document.getElementById("result").value = model.result;
       } catch (e) {
         alert("文章生成中にエラーが発生しました。\n" + e);
       }

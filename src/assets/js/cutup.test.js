@@ -1,6 +1,8 @@
-import { cutup } from "./cutup";
+import { Cutup } from "./cutup";
 
 describe("cutup", () => {
+  let cutup;
+
   beforeEach(() => {
     const model = {
       src: "隣の客はよく柿食う客だ",
@@ -11,7 +13,7 @@ describe("cutup", () => {
       upper: 30,
     };
 
-    cutup.init(model);
+    cutup = new Cutup(model);
   });
 
   test("文章の分割", () => {
@@ -39,7 +41,7 @@ describe("cutup", () => {
   test("ランダムに文章を取得", () => {
     let result = new Array(10).fill(0).map((_) => {
       let sentences = cutup.splitText();
-      return cutup.pickupSentence(5, sentences).head;
+      return cutup.pickupSentences(5, sentences).head;
     });
 
     expect(result).toStrictEqual([5, 5, 5, 5, 5, 5, 5, 5, 5, 5]);
