@@ -34,27 +34,12 @@ const msg = {
 const update = (msg, props = {}) => {
   switch (msg) {
     case "src":
-      model.src = props.value;
-      break;
-
     case "start":
-      model.start = props.value;
-      break;
-
     case "end":
-      model.end = props.value;
-      break;
-
     case "middle":
-      model.middle = props.value;
-      break;
-
     case "lower":
-      model.lower = props.value;
-      break;
-
     case "upper":
-      model.upper = props.value;
+      model[msg] = props.value;
       break;
 
     case "cutup":
