@@ -16,12 +16,11 @@
       </div>
 
       <div class="l-form">
-        <form onsubmit="update(msg.Cutup); return false;">
+        <form class="form_input" onsubmit="update(msg.Cutup); return false;">
           <textarea
+            class="textarea textarea-src"
             name="src"
             id="src"
-            cols="30"
-            rows="10"
             oninput="update(msg.Src, { value: this.value })"
             required
           ></textarea>
@@ -91,7 +90,11 @@
           <button type="submit">生成</button>
         </form>
 
-        <textarea name="result" id="result" cols="30" rows="10"></textarea>
+        <textarea
+          class="textarea textarea-result"
+          name="result"
+          id="result"
+        ></textarea>
       </div>
 
       <footer class="l-footer">
