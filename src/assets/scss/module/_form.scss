@@ -1,6 +1,6 @@
 @import "../var";
 
-.form_input {
+.form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +8,10 @@
   flex-wrap: nowrap;
 
   width: 100%;
+}
+
+.form-label {
+  font-size: $font-s;
 }
 
 .textarea {

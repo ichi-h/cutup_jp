@@ -16,7 +16,8 @@
       </div>
 
       <div class="l-form">
-        <form class="form_input" onsubmit="update(msg.Cutup); return false;">
+        <form class="form" onsubmit="update(msg.Cutup); return false;">
+          <label class="form-label" for="src">入力</label>
           <textarea
             class="textarea textarea-src"
             name="src"
@@ -32,7 +33,7 @@
                 <li>区切り文字</li>
                 <ul>
                   <li>
-                    文頭:
+                    <label class="form-label" for="start">文頭:</label>
                     <input
                       type="text"
                       name="start"
@@ -42,7 +43,7 @@
                     />
                   </li>
                   <li>
-                    文末:
+                    <label class="form-label" for="end">文末:</label>
                     <input
                       type="text"
                       name="end"
@@ -52,7 +53,7 @@
                     />
                   </li>
                   <li>
-                    文中:
+                    <label class="form-label" for="middle">文中:</label>
                     <input
                       type="text"
                       name="middle"
@@ -65,7 +66,7 @@
                 <li>文の長さ</li>
                 <ul>
                   <li>
-                    下限:
+                    <label class="form-label" for="lower">下限:</label>
                     <input
                       type="number"
                       name="lower"
@@ -75,7 +76,7 @@
                     />
                   </li>
                   <li>
-                    上限:
+                    <label class="form-label" for="upper">上限:</label>
                     <input
                       type="number"
                       name="upper"
@@ -92,6 +93,7 @@
           <button type="submit">生成</button>
         </form>
 
+        <label class="form-label" for="result">出力</label>
         <textarea
           class="textarea textarea-result"
           name="result"
