@@ -9,8 +9,7 @@
 }
 
 .l-desc,
-.l-form,
-.l-result {
+.l-form {
   padding: 2rem;
 }
 
@@ -20,9 +19,20 @@
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
+
+  width: 60vw;
+  border-radius: 1rem;
+  background-color: white;
+  filter: drop-shadow(0.7rem 0.7rem 0.7rem rgba(0, 0, 0, 0.2));
 }
 
 .l-footer {
   position: absolute;
   bottom: 0;
+}
+
+@media screen and (max-width: 1050px) {
+  .l-form {
+    width: 80vw;
+  }
 }
