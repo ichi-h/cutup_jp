@@ -61,12 +61,9 @@ const initialize = () => {
   window.msg = msg;
   window.update = update;
 
-  document.getElementById("src").value = model.src;
-  document.getElementById("start").value = model.start;
-  document.getElementById("end").value = model.end;
-  document.getElementById("middle").value = model.middle;
-  document.getElementById("lower").value = model.lower;
-  document.getElementById("upper").value = model.upper;
+  ["src", "start", "end", "middle", "lower", "upper"].forEach(
+    (target) => (document.getElementById(target).value = model[target])
+  );
 };
 
 initialize();
