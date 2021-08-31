@@ -1,0 +1,27 @@
+@import "../var";
+
+.list {
+  width: 100%;
+  font-size: $font-s;
+
+  ul,
+  li {
+    list-style: none;
+  }
+
+  ul {
+    padding-left: 0rem;
+  }
+
+  ul > ul {
+    padding-left: $font-s;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  li::before {
+    content: "- ";
+  }
+}

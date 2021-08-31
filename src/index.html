@@ -27,64 +27,66 @@
 
           <details class="accordion">
             <summary class="accordion-summary">詳細設定</summary>
-            <ul>
-              <li>区切り文字</li>
+            <div class="list">
               <ul>
-                <li>
-                  文頭:
-                  <input
-                    type="text"
-                    name="start"
-                    id="start"
-                    oninput="update(msg.Start, { value: this.value })"
-                    required
-                  />
-                </li>
-                <li>
-                  文末:
-                  <input
-                    type="text"
-                    name="end"
-                    id="end"
-                    oninput="update(msg.End, { value: this.value })"
-                    required
-                  />
-                </li>
-                <li>
-                  文中:
-                  <input
-                    type="text"
-                    name="middle"
-                    id="middle"
-                    oninput="update(msg.Middle, { value: this.value })"
-                    required
-                  />
-                </li>
+                <li>区切り文字</li>
+                <ul>
+                  <li>
+                    文頭:
+                    <input
+                      type="text"
+                      name="start"
+                      id="start"
+                      oninput="update(msg.Start, { value: this.value })"
+                      required
+                    />
+                  </li>
+                  <li>
+                    文末:
+                    <input
+                      type="text"
+                      name="end"
+                      id="end"
+                      oninput="update(msg.End, { value: this.value })"
+                      required
+                    />
+                  </li>
+                  <li>
+                    文中:
+                    <input
+                      type="text"
+                      name="middle"
+                      id="middle"
+                      oninput="update(msg.Middle, { value: this.value })"
+                      required
+                    />
+                  </li>
+                </ul>
+                <li>文の長さ</li>
+                <ul>
+                  <li>
+                    下限:
+                    <input
+                      type="number"
+                      name="lower"
+                      id="lower"
+                      oninput="update(msg.Lower, { value: this.value })"
+                      required
+                    />
+                  </li>
+                  <li>
+                    上限:
+                    <input
+                      type="number"
+                      name="upper"
+                      id="upper"
+                      oninput="update(msg.Upper, { value: this.value })"
+                      required
+                    />
+                  </li>
+                </ul>
               </ul>
-              <li>文の長さ</li>
-              <ul>
-                <li>
-                  下限:
-                  <input
-                    type="number"
-                    name="lower"
-                    id="lower"
-                    oninput="update(msg.Lower, { value: this.value })"
-                    required
-                  />
-                </li>
-                <li>
-                  上限:
-                  <input
-                    type="number"
-                    name="upper"
-                    id="upper"
-                    oninput="update(msg.Upper, { value: this.value })"
-                    required
-                  />
-                </li>
-              </ul>
-            </ul>
+            </div>
           </details>
 
           <button type="submit">生成</button>
