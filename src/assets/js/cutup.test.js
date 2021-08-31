@@ -1,32 +1,17 @@
-import { cutup } from "./main";
+import { cutup } from "./cutup";
 
 describe("cutup", () => {
   beforeEach(() => {
-    let srcText = "隣の客はよく柿食う客だ";
-    let splitPoint = {
-      "「": 0,
-      "。": 1,
-      "」": 1,
-      "？": 1,
-      は: 2,
-      へ: 3,
-      を: 4,
-      の: 5,
-      で: 6,
-      から: 7,
-      に: 8,
-      て: 9,
-      が: 10,
-      も: 11,
-      "、": 12,
-    };
-
-    cutup.init({
-      srcText: srcText,
-      splitPoint: splitPoint,
+    const model = {
+      src: "隣の客はよく柿食う客だ",
+      start: "「",
+      end: "。,」,？",
+      middle: "は,へ,を,の,で,から,に,て,が,も,、",
       lower: 20,
       upper: 30,
-    });
+    };
+
+    cutup.init(model);
   });
 
   test("文章の分割", () => {
