@@ -14,20 +14,23 @@ export class Cutup {
   }
 
   generateText() {
-    if (this.lower > this.upper) {
-      alert(
+    this.checkProps();
+    let sentences = this.splitText();
+    return this.combineSentences(0, sentences, "");
+  }
+
+  checkProps() {
+    if (this.upper < this.lower) {
+      throw Error(
         "下限よりも上限の値の方が小さくなっています。\n上限の方が大きくなるよう設定してください。"
       );
-      return;
     }
 
     if (this.src.length < this.lower) {
-      alert("下限は入力された文章の文字数よりも小さくする必要があります。");
-      return;
+      throw Error(
+        "下限は入力された文章の文字数よりも小さくする必要があります。"
+      );
     }
-
-    let sentences = this.splitText();
-    return this.combineSentences(0, sentences, "");
   }
 
   splitText() {

@@ -63,12 +63,12 @@ const update = (msg, props = {}) => {
         model.result = cutup.generateText();
         document.getElementById("result").value = model.result;
       } catch (e) {
-        alert("文章生成中にエラーが発生しました。\n" + e);
+        alert(e);
       }
       break;
 
     default:
-      throw SyntaxError("Received an unknown message.");
+      throw Error("Received an unknown message.");
   }
 };
 
