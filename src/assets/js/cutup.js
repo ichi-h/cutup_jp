@@ -16,7 +16,7 @@ export class Cutup {
   generateText() {
     this.checkProps();
     let sentences = this.splitText();
-    return this.combineSentences(0, sentences, "");
+    return this.combineSentences(sentences)(0, "");
   }
 
   checkProps() {
@@ -39,9 +39,11 @@ export class Cutup {
       return segmenter.segment(this.src);
     };
 
-    const createSentences = (i, value, head, list, segs) => {
+    const createSentences = (segs) => (acc, value, head, i) => {
+      const create = createSentences(segs);
+
       if (i === segs.length - 1) {
-        return list.concat({
+        return acc.concat({
           value: value + segs[i],
           head: head,
           tail: 1,
@@ -49,38 +51,36 @@ export class Cutup {
       }
 
       if (!this.splitPoint[segs[i]]) {
-        return createSentences(i + 1, value + segs[i], head, list, segs);
+        return create(acc, value + segs[i], head, i + 1);
       }
 
       if (this.splitPoint[segs[i]] === 1) {
-        return createSentences(
-          i + 2,
-          segs[i + 1],
-          0,
-          list.concat({
+        return create(
+          acc.concat({
             value: value + segs[i],
             head: head,
             tail: 1,
           }),
-          segs
+          segs[i + 1],
+          0,
+          i + 2
         );
       }
 
-      return createSentences(
-        i + 1,
-        segs[i],
-        this.splitPoint[segs[i]],
-        list.concat({
+      return create(
+        acc.concat({
           value: value,
           head: head,
           tail: this.splitPoint[segs[i]],
         }),
-        segs
+        segs[i],
+        this.splitPoint[segs[i]],
+        i + 1
       );
     };
 
     let segs = createSegments();
-    return createSentences(0, "", 0, [], segs);
+    return createSentences(segs)([], "", 0, 0);
   }
 
   pickupSentences(target, sentences) {
@@ -89,25 +89,25 @@ export class Cutup {
     return selected[i];
   }
 
-  combineSentences(target, sentences, result) {
-    if (this.upper < result.length) {
-      return this.combineSentences(0, sentences, "");
-    }
+  combineSentences(sentences) {
+    return (target, result) => {
+      const combine = this.combineSentences(sentences);
 
-    if (this.lower <= result.length && target === 0) {
-      return result;
-    }
+      if (this.upper < result.length) {
+        return combine(0, "");
+      }
 
-    let sentence = this.pickupSentences(target, sentences);
-    let newTarget = (target) => {
-      if (target === 1) return 0;
-      else return target;
+      if (this.lower <= result.length && target === 0) {
+        return result;
+      }
+
+      let sentence = this.pickupSentences(target, sentences);
+      let newTarget = (target) => {
+        if (target === 1) return 0;
+        else return target;
+      };
+
+      return combine(newTarget(sentence.tail), result + sentence.value);
     };
-
-    return this.combineSentences(
-      newTarget(sentence.tail),
-      sentences,
-      result + sentence.value
-    );
   }
 }
