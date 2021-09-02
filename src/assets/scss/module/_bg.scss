@@ -1,0 +1,20 @@
+@import "../var";
+
+.bg-img {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-image: url($bg);
+  background-size: contain;
+  filter: blur(1rem);
+  z-index: -2;
+}
+
+.bg-filter {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.8;
+  z-index: -1;
+}
