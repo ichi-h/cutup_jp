@@ -51,28 +51,20 @@ export class Cutup {
       }
 
       if (this.splitPoint[segs[i]] === 1) {
-        return create(
-          acc.concat({
-            value: value + segs[i],
-            head: head,
-            tail: 1,
-          }),
-          segs[i + 1],
-          0,
-          i + 2
-        );
+        let newList = acc.concat({
+          value: value + segs[i],
+          head: head,
+          tail: 1,
+        });
+        return create(newList, segs[i + 1], 0, i + 2);
       }
 
-      return create(
-        acc.concat({
-          value: value,
-          head: head,
-          tail: this.splitPoint[segs[i]],
-        }),
-        segs[i],
-        this.splitPoint[segs[i]],
-        i + 1
-      );
+      let newList = acc.concat({
+        value: value,
+        head: head,
+        tail: this.splitPoint[segs[i]],
+      });
+      return create(newList, segs[i], this.splitPoint[segs[i]], i + 1);
     };
 
     let segs = createSegments();
