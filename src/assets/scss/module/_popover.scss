@@ -1,0 +1,35 @@
+.popover-outer {
+  position: relative;
+}
+
+.popover {
+  visibility: hidden;
+  transition-property: opacity visibility;
+  transition-duration: 0.2s;
+  opacity: 0;
+
+  &.is-show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .popover-text {
+    position: absolute;
+    top: -2.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: gray;
+    border-radius: 0.5rem;
+    padding: 0 1rem 0 1rem;
+  }
+
+  .popover-triangle {
+    position: absolute;
+    border-top: 0.7rem solid gray;
+    border-right: 1rem solid transparent;
+    border-left: 1rem solid transparent;
+    top: -0.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
