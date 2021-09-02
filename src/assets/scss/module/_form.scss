@@ -9,14 +9,14 @@
 
   width: 100%;
   margin-bottom: 1rem;
+
+  .form-text {
+    width: 100%;
+  }
 }
 
-.form-label {
+.label {
   font-size: $font-s;
-}
-
-.form-text {
-  width: 100%;
 }
 
 .textarea {
@@ -24,19 +24,19 @@
   height: 15rem;
   resize: none;
   font-size: $font-s;
-}
 
-.textarea-result {
-  margin-bottom: 1rem;
+  &.textarea-result {
+    margin-bottom: 1rem;
+  }
 }
 
 .accordion {
   margin: 1rem 0 1rem 0;
   width: 100%;
-}
 
-.accordion-summary {
-  text-align: center;
-  font-size: $font-s;
-  cursor: pointer;
+  .accordion-summary {
+    text-align: center;
+    font-size: $font-s;
+    cursor: pointer;
+  }
 }

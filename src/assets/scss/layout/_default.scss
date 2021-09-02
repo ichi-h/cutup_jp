@@ -31,14 +31,12 @@
   border-radius: 1rem;
   background-color: white;
   filter: drop-shadow(0.7rem 0.7rem 0.7rem rgba(0, 0, 0, 0.2));
+
+  @media screen and (max-width: 1050px) {
+    width: 80vw;
+  }
 }
 
 .l-footer {
   margin: 2rem 0 1rem 0;
-}
-
-@media screen and (max-width: 1050px) {
-  .l-form {
-    width: 80vw;
-  }
 }
