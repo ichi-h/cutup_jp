@@ -62,3 +62,11 @@ cutup_jp では Base で CSS のリセットや基本的なスタイルの決定
 一方、現状では There は使用していません。
 
 詳細は、[/src/assets/scss](https://github.com/ippee/cutup_jp/blob/main/src/assets/scss) の各ファイルをご覧ください。
+
+## 参考
+
+- [Making cutup software](https://www.12kai.com/cutup/cumaking01.html)
+- [はじめに · An Introduction to Elm](https://guide.elm-lang.jp/)
+- [Pragmatic MVU With React And TypeScript](https://thomasbandt.com/model-view-update-with-react-and-typescript)
+- [フック API リファレンス – React](https://ja.reactjs.org/docs/hooks-reference.html#usereducer)
+- [Ja - Scalable and Modular Architecture for CSS](http://smacss.com/ja)
