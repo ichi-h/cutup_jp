@@ -1,0 +1,24 @@
+@import "../var";
+
+.footer-links {
+  display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  a {
+    color: black;
+    font-size: $font-l;
+    transition: 0.1s;
+  }
+
+  a:hover {
+    opacity: 0.8;
+  }
+
+  a:active {
+    opacity: 1;
+  }
+}
