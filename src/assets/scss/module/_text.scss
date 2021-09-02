@@ -1,31 +1,33 @@
 @import "../var";
 
-.text-p {
-  font-size: $font-s;
-}
-
-.text-h1 {
-  font-size: $font-xl;
-  text-align: center;
-}
-
-.text-h2 {
-  font-size: $font-l;
-  text-align: center;
-
-  &::before {
-    content: "- ";
+.text {
+  &.text-p {
+    font-size: $font-s;
   }
 
-  &::after {
-    content: " -";
+  &.text-h1 {
+    font-size: $font-xl;
+    text-align: center;
   }
-}
 
-.text-center {
-  text-align: center;
-}
+  &.text-h2 {
+    font-size: $font-l;
+    text-align: center;
 
-.text-white {
-  color: white;
+    &::before {
+      content: "- ";
+    }
+
+    &::after {
+      content: " -";
+    }
+  }
+
+  &.is-center {
+    text-align: center;
+  }
+
+  &.is-white {
+    color: white;
+  }
 }
