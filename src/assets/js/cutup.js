@@ -2,15 +2,17 @@ import TinySegmenter from "tiny-segmenter";
 
 export class Cutup {
   constructor(model) {
-    this.src = model.src.replace(/\n/g, "");
-    this.lower = model.lower;
-    this.upper = model.upper;
+    this.src = model.src.value.replace(/\n/g, "");
+    this.lower = model.lower.value;
+    this.upper = model.upper.value;
 
     this.splitPoint = {};
 
-    model.start.split(",").forEach((seg) => (this.splitPoint[seg] = 0));
-    model.end.split(",").forEach((seg) => (this.splitPoint[seg] = 1));
-    model.middle.split(",").forEach((seg, i) => (this.splitPoint[seg] = i + 2));
+    model.start.value.split(",").forEach((seg) => (this.splitPoint[seg] = 0));
+    model.end.value.split(",").forEach((seg) => (this.splitPoint[seg] = 1));
+    model.middle.value
+      .split(",")
+      .forEach((seg, i) => (this.splitPoint[seg] = i + 2));
   }
 
   generateText() {

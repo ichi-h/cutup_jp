@@ -1,7 +1,8 @@
 import { Cutup } from "./cutup";
 
 const model = {
-  src: `　晴れた秋の夜は星の瞬きが、いつもより、ずっとヴィヴィットである。ことに月のない夜は星の光が一層燦然として美しい。それ等の星々をじっと凝視していると、光の強い大きな星は段々とこちらに向って動いて来るような気がして怖いようだ。事実太洋を航海しているとき闇夜の海上の彼方から一点の光がこちらに向って近づいて来る。何であろうと一心にそれを見守っていると、突然その光の下に黒々とした山のような巨船の姿を見出してびっくりしたことがある。星を見詰めていると何か判らない巨大なものがその星を乗せてこちらに迫って来るような気がする時もある。そういう錯覚は一種の恐怖に似て神秘的な楽しさでもある。
+  src: {
+    value: `　晴れた秋の夜は星の瞬きが、いつもより、ずっとヴィヴィットである。ことに月のない夜は星の光が一層燦然として美しい。それ等の星々をじっと凝視していると、光の強い大きな星は段々とこちらに向って動いて来るような気がして怖いようだ。事実太洋を航海しているとき闇夜の海上の彼方から一点の光がこちらに向って近づいて来る。何であろうと一心にそれを見守っていると、突然その光の下に黒々とした山のような巨船の姿を見出してびっくりしたことがある。星を見詰めていると何か判らない巨大なものがその星を乗せてこちらに迫って来るような気がする時もある。そういう錯覚は一種の恐怖に似て神秘的な楽しさでもある。
 　星の瞬きは太古から人間にいろいろな暗示や空想を与えている。星によって人間の運勢を占うということは、古来、東西共通に行われたことで、たとえそれに、科学的根拠があるにしても、そもそもの初めは太古の人間が、星辰の運行にいろいろの神秘的な意味を持たせ、それを人間の生活に結びつけて来たものである。星が常に何事かを下界に向けて信号し続けているように明滅したり、時期によって地球から見る人の眼にその位置を変えたり、鼓豆虫のようにすいすいと天空を流れたり、時には孔雀の尾のように長い尾を引く恵星が現われたりすることなどは、すべて動くものに生命を見出した太古の人にとっては、星もまた一つの生きものであったと思われたらしい。私達でも星をじっと見詰めていると、星が生きもののような気がして来る。
 　エジプト、アラビヤ、インド、などの乾燥した土地では、天体を非常に近く感ずる。それは空中の湿度が低いため星辰の光が一層燦然と輝くからであるという。それだけに、それ等の土地の太古の住民は、天体の運行に興味を持ち、ちょうど漁師が風と雲によって天候を予知するように、星辰を観測することによって、何彼と生活上の便宜を得た。そういうわけで、占星術のごときも、エジプト、アラビア、インド等に、一番古く発達したのであった。
 　私は、渡欧の船中、インド洋で眺めた南十字星の美しさは、いつまでも忘れ難い。コバルト色に深く澄み渡った南の空に、大粒の宝玉のように燦々と光り輝く十字星は、天空一ぱいに散乱する群星を圧していた。スエズで一たん船を降りて、夜中自動車でエジプトの首都カイロに向った時、荒漠たるアラビヤ砂漠の中で眺めた星もまた美しかった。インド洋上といい、アラビヤ砂漠の中といい、私は星を仰ぎ見る度に古代の人の心に立ち帰って見るのであった。今日のように、機械の発達しない太古の人達はインド洋やアラビヤ砂漠を往来するのに星を唯一の羅針とした。昔も今も変りなく燦然と輝くあの南十字星がそんな役割を勤めたかと思うと、ただ単に美しいと鑑賞するだけでは済まないようにさえ思う。
@@ -13,15 +14,37 @@ const model = {
 　星を眺めていると、星と語った古代人の稚純な気持ちが、自分にも見出されるような気がする。
 　秋の晴れた夜、私は星と語りによく家の屋上に昇つて行く。北の空には柄杓のかたちをした北斗七星がその柄杓の柄を東に向けて横たはっている。それと少し離れて北極星が一際鮮やかに輝いている。他の星がことごとく夜毎に少しずつ位置を変えて行くのに北極星だけはいつも同じ位置にいる。地軸の北端の真上にある北極星は小熊星座の主星である。この星座の形が小熊を連想させるとは私にはどうしても受取れないが、小熊という名はいかにも北極の星らしく、その光質までが白光を帯びているようである。
 　北極星を眺めていると、海辺から帰る鵜烏が一羽、二羽、淋しい啼声をたてながら星空おかすめ去る。地上には薄の穂が夜目にも白く風に靡いている――秋の夜の星空は四季を通じて一ばん私たちに親しく懐しく感ぜられる。`,
-  start: "「",
-  end: "。,」,？",
-  middle: "は,へ,を,の,で,から,に,て,が,も,、",
-  lower: 50,
-  upper: 60,
-  result: "",
+    ids: ["src"],
+  },
+  start: {
+    value: "「",
+    ids: ["start"],
+  },
+  end: {
+    value: "。,」,？",
+    ids: ["end"],
+  },
+  middle: {
+    value: "は,へ,を,の,で,から,に,て,が,も,、",
+    ids: ["middle"],
+  },
+  lower: {
+    value: 50,
+    ids: ["lower"],
+  },
+  upper: {
+    value: 60,
+    ids: ["upper"],
+  },
+  result: {
+    value: "",
+    ids: ["result"],
+  },
 };
 
 const update = (model, view) => (msg) => {
+  let targets;
+
   switch (msg.type) {
     case "src":
     case "start":
@@ -29,35 +52,47 @@ const update = (model, view) => (msg) => {
     case "middle":
     case "lower":
     case "upper":
-      model[msg.type] = msg.value;
+      model[msg.type].value = msg.value;
+      targets = [msg.type];
       break;
 
     case "cutup":
       try {
         let cutup = new Cutup(model);
-        model.result = cutup.generateText();
-        document.getElementById("result").value = model.result;
+        model.result.value = cutup.generateText();
+        document.getElementById("result").value = model.result.value;
       } catch (e) {
         alert(e);
       }
+      targets = ["result"];
       break;
 
     default:
       throw Error("Received an unknown message.");
   }
 
-  view(model);
+  view(model, targets);
 };
 
-const view = (model) => {
-  Object.keys(model).forEach(
-    (target) => (document.getElementById(target).value = model[target])
-  );
+const view = (model, targets) => {
+  targets.forEach((target) => {
+    let m = model[target];
+    m.ids.forEach((id) => {
+      let elem = document.getElementById(id);
+      switch (elem.tagName) {
+        case "INPUT":
+        case "TEXTAREA":
+          elem.value = m.value;
+        default:
+          elem.innerText = m.value;
+      }
+    });
+  });
 };
 
 const main = (model, update, view) => {
   window.dispatch = update(model, view);
-  view(model);
+  view(model, Object.keys(model));
 };
 
 main(model, update, view);
