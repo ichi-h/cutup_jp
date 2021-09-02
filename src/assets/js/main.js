@@ -1,4 +1,5 @@
 import { Cutup } from "./cutup";
+import "./share";
 
 /**
  * アプリケーションの状態

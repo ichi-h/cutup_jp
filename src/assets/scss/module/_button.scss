@@ -19,8 +19,46 @@
     color: white;
   }
 
+  &.button-twitter {
+    background-color: #1da1f2;
+    color: white;
+  }
+
+  &.button-facebook {
+    background-color: #3b5998;
+    color: white;
+  }
+
+  &.button-pocket {
+    background-color: #e84352;
+    color: white;
+  }
+
   &.button-m {
     font-size: $font-m;
-    padding: 0 $font-m 0 $font-m;
+    padding: 0 $font-m;
+  }
+
+  &.button-s {
+    font-size: $font-s;
+    padding: 0 $font-s;
+  }
+}
+
+.share-links {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+
+  button {
+    margin: 0 1rem;
+  }
+
+  @media screen and (max-width: 550px) {
+    flex-direction: column;
+
+    button ~ button {
+      margin-top: 1rem;
+    }
   }
 }
