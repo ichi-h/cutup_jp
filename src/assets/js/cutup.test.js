@@ -25,13 +25,4 @@ describe("cutup", () => {
 
     expect(cutup.splitText()).toStrictEqual(expected);
   });
-
-  test("ランダムに文章を取得", () => {
-    let result = new Array(10).fill(0).map((_) => {
-      let sentences = cutup.splitText();
-      return cutup.pickupSentences(5, sentences).head;
-    });
-
-    expect(result).toStrictEqual([5, 5, 5, 5, 5, 5, 5, 5, 5, 5]);
-  });
 });
