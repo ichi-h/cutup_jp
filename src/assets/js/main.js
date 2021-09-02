@@ -1,5 +1,11 @@
 import { Cutup } from "./cutup";
 
+/**
+ * アプリケーションの状態
+ *
+ * 各ステートはvalueとidsによって管理される。<br />
+ * valueはステートの値を示し、idsはそのステートがどのノードで使われているかを示す。
+ */
 const model = {
   src: {
     value: `　晴れた秋の夜は星の瞬きが、いつもより、ずっとヴィヴィットである。ことに月のない夜は星の光が一層燦然として美しい。それ等の星々をじっと凝視していると、光の強い大きな星は段々とこちらに向って動いて来るような気がして怖いようだ。事実太洋を航海しているとき闇夜の海上の彼方から一点の光がこちらに向って近づいて来る。何であろうと一心にそれを見守っていると、突然その光の下に黒々とした山のような巨船の姿を見出してびっくりしたことがある。星を見詰めていると何か判らない巨大なものがその星を乗せてこちらに迫って来るような気がする時もある。そういう錯覚は一種の恐怖に似て神秘的な楽しさでもある。
@@ -42,6 +48,16 @@ const model = {
   },
 };
 
+/**
+ * modelの更新
+ *
+ * メッセージというクライアントの操作内容を元にmodelを更新する。<br />
+ * modelの更新後、view関数によってその変更をHTMLに反映する。
+ *
+ * @param {Object} model アプリケーションの状態
+ * @param {Function} view modelをHTMLに反映する関数
+ * @param {Object} msg メッセージ
+ */
 const update = (model, view) => (msg) => {
   let targets;
 
@@ -69,6 +85,14 @@ const update = (model, view) => (msg) => {
   view(model, targets);
 };
 
+/**
+ * modelをHTMLに反映
+ *
+ * targetsにはupdateによって更新されたステート名が格納されており、そのステートに関連するノードのみを更新する。
+ *
+ * @param {Object} model アプリケーションの状態
+ * @param {Array<String>} targets 更新されたステート名
+ */
 const view = (model, targets) => {
   targets.forEach((target) => {
     let m = model[target];
@@ -86,7 +110,7 @@ const view = (model, targets) => {
 };
 
 const main = (model, update, view) => {
-  window.dispatch = update(model, view);
+  window.dispatch = update(model, view); // dispatch: クライアントの操作内容を発信する関数
   view(model, Object.keys(model));
 };
 
