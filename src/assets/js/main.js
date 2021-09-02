@@ -21,7 +21,7 @@ const model = {
   result: "",
 };
 
-const update = (msg) => {
+const update = (model, view) => (msg) => {
   switch (msg.type) {
     case "src":
     case "start":
@@ -45,14 +45,19 @@ const update = (msg) => {
     default:
       throw Error("Received an unknown message.");
   }
+
+  view(model);
 };
 
-const initialize = () => {
-  window.update = update;
-
-  ["src", "start", "end", "middle", "lower", "upper"].forEach(
+const view = (model) => {
+  Object.keys(model).forEach(
     (target) => (document.getElementById(target).value = model[target])
   );
 };
 
-initialize();
+const main = (model, update, view) => {
+  window.dispatch = update(model, view);
+  view(model);
+};
+
+main(model, update, view);

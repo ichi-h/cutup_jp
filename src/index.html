@@ -16,13 +16,16 @@
       </div>
 
       <div class="l-form">
-        <form class="form" onsubmit="update({ type: 'cutup' }); return false;">
+        <form
+          class="form"
+          onsubmit="dispatch({ type: 'cutup' }); return false;"
+        >
           <label class="form-label" for="src">入力</label>
           <textarea
             class="textarea textarea-src"
             name="src"
             id="src"
-            oninput="update({ type: 'src', value: this.value })"
+            oninput="dispatch({ type: 'src', value: this.value })"
             required
           ></textarea>
 
@@ -38,7 +41,7 @@
                       type="text"
                       name="start"
                       id="start"
-                      oninput="update({ type: 'start', value: this.value })"
+                      oninput="dispatch({ type: 'start', value: this.value })"
                       required
                     />
                   </li>
@@ -48,7 +51,7 @@
                       type="text"
                       name="end"
                       id="end"
-                      oninput="update({ type: 'end', value: this.value })"
+                      oninput="dispatch({ type: 'end', value: this.value })"
                       required
                     />
                   </li>
@@ -58,7 +61,7 @@
                       type="text"
                       name="middle"
                       id="middle"
-                      oninput="update({ type: 'middle', value: this.value })"
+                      oninput="dispatch({ type: 'middle', value: this.value })"
                       required
                     />
                   </li>
@@ -71,7 +74,7 @@
                       type="number"
                       name="lower"
                       id="lower"
-                      oninput="update({ type: 'lower', value: this.value })"
+                      oninput="dispatch({ type: 'lower', value: this.value })"
                       required
                     />
                   </li>
@@ -81,7 +84,7 @@
                       type="number"
                       name="upper"
                       id="upper"
-                      oninput="update({ type: 'upper', value: this.value })"
+                      oninput="dispatch({ type: 'upper', value: this.value })"
                       required
                     />
                   </li>
