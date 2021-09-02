@@ -51,10 +51,12 @@
   margin-top: 2rem;
 
   button {
+    width: 12rem;
     margin: 0 1rem;
   }
 
   @media screen and (max-width: 550px) {
+    align-items: center;
     flex-direction: column;
 
     button ~ button {
