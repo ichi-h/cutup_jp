@@ -12,22 +12,25 @@
       opacity: 1;
     }
 
+    $pop-pos: -2.8rem;
+    $tri-size: 0.7rem;
+
     .popover-text {
       position: absolute;
-      top: -2.8rem;
+      top: $pop-pos;
       left: 50%;
       transform: translateX(-50%);
       background-color: gray;
       border-radius: 0.5rem;
-      padding: 0 1rem 0 1rem;
+      padding: 0 1rem;
     }
 
     .popover-triangle {
       position: absolute;
-      border-top: 0.7rem solid gray;
+      border-top: $tri-size solid gray;
       border-right: 1rem solid transparent;
       border-left: 1rem solid transparent;
-      top: -0.7rem;
+      top: $pop-pos - $tri-size - 0.1rem;
       left: 50%;
       transform: translateX(-50%);
     }
