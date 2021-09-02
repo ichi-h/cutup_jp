@@ -8,11 +8,8 @@
   flex-direction: column;
   flex-wrap: nowrap;
 
-  a {
-    font-size: $font-l;
-  }
-
   .icon-github-circled {
+    font-size: $font-l;
     color: white;
     transition: 0.1s;
   }
