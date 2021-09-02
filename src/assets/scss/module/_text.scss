@@ -9,6 +9,19 @@
   text-align: center;
 }
 
+.text-h2 {
+  font-size: $font-m;
+  text-align: center;
+
+  &::before {
+    content: "- ";
+  }
+
+  &::after {
+    content: " -";
+  }
+}
+
 .text-center {
   text-align: center;
 }
