@@ -6,7 +6,7 @@
   "author": "ippee",
   "license": "MPL-2.0",
   "scripts": {
-    "build": "parcel build ./src/index.html",
+    "build": "parcel build ./src/index.html --public-url '/cutup_jp/'",
     "dev": "parcel ./src/index.html",
     "test": "jest",
     "format": "prettier --write ."
