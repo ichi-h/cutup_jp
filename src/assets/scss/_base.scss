@@ -15,10 +15,6 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 62.5%;
-}
-
 /* Remove default margin */
 body,
 h1,
@@ -85,4 +81,13 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Set default style */
+html {
+  font-size: 62.5%;
+}
+
+a {
+  color: inherit;
 }
