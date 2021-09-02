@@ -21,25 +21,15 @@ const model = {
   result: "",
 };
 
-const msg = {
-  Src: "src",
-  Start: "start",
-  End: "end",
-  Middle: "middle",
-  Lower: "lower",
-  Upper: "upper",
-  Cutup: "cutup",
-};
-
-const update = (msg, props = {}) => {
-  switch (msg) {
+const update = (msg) => {
+  switch (msg.type) {
     case "src":
     case "start":
     case "end":
     case "middle":
     case "lower":
     case "upper":
-      model[msg] = props.value;
+      model[msg.type] = msg.value;
       break;
 
     case "cutup":
@@ -58,7 +48,6 @@ const update = (msg, props = {}) => {
 };
 
 const initialize = () => {
-  window.msg = msg;
   window.update = update;
 
   ["src", "start", "end", "middle", "lower", "upper"].forEach(

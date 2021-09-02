@@ -16,13 +16,13 @@
       </div>
 
       <div class="l-form">
-        <form class="form" onsubmit="update(msg.Cutup); return false;">
+        <form class="form" onsubmit="update({ type: 'cutup' }); return false;">
           <label class="form-label" for="src">入力</label>
           <textarea
             class="textarea textarea-src"
             name="src"
             id="src"
-            oninput="update(msg.Src, { value: this.value })"
+            oninput="update({ type: 'src', value: this.value })"
             required
           ></textarea>
 
@@ -38,7 +38,7 @@
                       type="text"
                       name="start"
                       id="start"
-                      oninput="update(msg.Start, { value: this.value })"
+                      oninput="update({ type: 'start', value: this.value })"
                       required
                     />
                   </li>
@@ -48,7 +48,7 @@
                       type="text"
                       name="end"
                       id="end"
-                      oninput="update(msg.End, { value: this.value })"
+                      oninput="update({ type: 'end', value: this.value })"
                       required
                     />
                   </li>
@@ -58,7 +58,7 @@
                       type="text"
                       name="middle"
                       id="middle"
-                      oninput="update(msg.Middle, { value: this.value })"
+                      oninput="update({ type: 'middle', value: this.value })"
                       required
                     />
                   </li>
@@ -71,7 +71,7 @@
                       type="number"
                       name="lower"
                       id="lower"
-                      oninput="update(msg.Lower, { value: this.value })"
+                      oninput="update({ type: 'lower', value: this.value })"
                       required
                     />
                   </li>
@@ -81,7 +81,7 @@
                       type="number"
                       name="upper"
                       id="upper"
-                      oninput="update(msg.Upper, { value: this.value })"
+                      oninput="update({ type: 'upper', value: this.value })"
                       required
                     />
                   </li>
