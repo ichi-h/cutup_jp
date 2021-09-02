@@ -9,16 +9,19 @@
   flex-wrap: nowrap;
 
   a {
-    color: black;
     font-size: $font-l;
+  }
+
+  .icon-github-circled {
+    color: white;
     transition: 0.1s;
   }
 
-  a:hover {
-    opacity: 0.8;
+  .icon-github-circled:hover {
+    color: $main-color;
   }
-
-  a:active {
-    opacity: 1;
+  .icon-github-circled:active {
+    color: $main-color;
+    filter: brightness(90%);
   }
 }
