@@ -46,17 +46,12 @@ const update = (model, view) => (msg) => {
   let targets;
 
   switch (msg.type) {
-    case "src":
-    case "start":
-    case "end":
-    case "middle":
-    case "lower":
-    case "upper":
-      model[msg.type].value = msg.value;
-      targets = [msg.type];
+    case "Change":
+      model[msg.target].value = msg.newValue;
+      targets = [msg.target];
       break;
 
-    case "cutup":
+    case "Cutup":
       try {
         let cutup = new Cutup(model);
         model.result.value = cutup.generateText();
