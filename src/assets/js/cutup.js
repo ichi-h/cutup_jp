@@ -98,7 +98,7 @@ export class Cutup {
         return acc.concat({
           value: value + segs[i],
           head: head,
-          tail: 1,
+          tail: 0,
         });
       }
 
@@ -110,7 +110,7 @@ export class Cutup {
         let newList = acc.concat({
           value: value + segs[i],
           head: head,
-          tail: 1,
+          tail: 0,
         });
         return create(newList, segs[i + 1], 0, i + 2);
       }
