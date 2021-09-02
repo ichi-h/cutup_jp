@@ -13,11 +13,15 @@
   flex-wrap: nowrap;
 
   min-height: 100vh;
+
+  div ~ div {
+    margin-top: 3rem;
+  }
 }
 
-.l-desc,
 .l-form {
   padding: 2rem;
+  border: 1px solid red;
 }
 
 .l-form {
