@@ -23,6 +23,24 @@
       "css": "docs",
       "code": 61637,
       "src": "fontawesome"
+    },
+    {
+      "uid": "627abcdb627cb1789e009c08e2678ef9",
+      "css": "twitter",
+      "code": 61593,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "4743b088aa95d6f3b6b990e770d3b647",
+      "css": "facebook-squared",
+      "code": 62216,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "685e1db17ba5c233b6ab38aed4084a24",
+      "css": "get-pocket",
+      "code": 62053,
+      "src": "fontawesome"
     }
   ]
 }
