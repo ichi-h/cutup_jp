@@ -69,7 +69,7 @@ const update = (model, view) => (msg) => {
 
     case "Cutup":
       try {
-        let cutup = new Cutup(model);
+        let cutup = Cutup.newInstanceFromModel(model);
         model.result.value = cutup.generateText();
         document.getElementById("result").value = model.result.value;
       } catch (e) {

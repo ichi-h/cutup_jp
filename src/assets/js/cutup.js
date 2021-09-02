@@ -4,18 +4,45 @@ import TinySegmenter from "tiny-segmenter";
  * 日本語のカットアップを行うクラス
  */
 export class Cutup {
-  constructor(model) {
-    this.src = model.src.value.replace(/\n/g, "");
-    this.lower = model.lower.value;
-    this.upper = model.upper.value;
+  /**
+   * Cutupインスタンスの生成
+   *
+   * @param {String} src 入力された文章
+   * @param {Object} splitPoint 区切り文字
+   * @param {Object} limits 文章の上限/下限
+   */
+  constructor(src, splitPoint, limits) {
+    this.src = src;
+    this.splitPoint = splitPoint;
+    this.limit = limits;
+  }
 
-    this.splitPoint = {};
+  /**
+   * modelからCutupインスタンスを生成
+   *
+   * @param {Object} model アプリケーションの状態
+   * @return {Cutup} Cutupインスタンス
+   */
+  static newInstanceFromModel(model) {
+    let src = model.src.value.replace(/\n/g, "");
+    let limits = {
+      lower: model.lower.value,
+      upper: model.upper.value,
+    };
 
-    model.start.value.split(",").forEach((seg) => (this.splitPoint[seg] = 0));
-    model.end.value.split(",").forEach((seg) => (this.splitPoint[seg] = 1));
-    model.middle.value
+    let start = model.start.value
       .split(",")
-      .forEach((seg, i) => (this.splitPoint[seg] = i + 2));
+      .reduce((acc, seg) => ({ ...acc, [seg]: 0 }), {});
+    let end = model.end.value
+      .split(",")
+      .reduce((acc, seg) => ({ ...acc, [seg]: 1 }), {});
+    let middle = model.middle.value
+      .split(",")
+      .reduce((acc, seg, i) => ({ ...acc, [seg]: i + 2 }), {});
+
+    let splitPoint = { ...start, ...end, ...middle };
+
+    return new Cutup(src, splitPoint, limits);
   }
 
   /**
@@ -36,7 +63,7 @@ export class Cutup {
    * 不正な値が存在する場合、例外を送出する。
    */
   checkProps() {
-    if (this.upper < this.lower) {
+    if (this.limit.upper < this.limit.lower) {
       throw Error(
         "下限よりも上限の値の方が小さくなっています。\n上限の方が大きくなるよう設定してください。"
       );
@@ -124,11 +151,11 @@ export class Cutup {
     return (target, result) => {
       const combine = this.combineSentences(sentences);
 
-      if (this.upper < result.length) {
+      if (this.limit.upper < result.length) {
         return combine(0, "");
       }
 
-      if (this.lower <= result.length && target === 0) {
+      if (this.limit.lower <= result.length && target === 0) {
         return result;
       }
 
