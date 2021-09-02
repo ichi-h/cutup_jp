@@ -75,7 +75,6 @@ const update = (model, view) => (msg) => {
       try {
         let cutup = Cutup.newInstanceFromModel(model);
         model.result.value = cutup.generateText();
-        document.getElementById("result").value = model.result.value;
       } catch (e) {
         alert(e);
       }
