@@ -27,12 +27,6 @@ export class Cutup {
         "下限よりも上限の値の方が小さくなっています。\n上限の方が大きくなるよう設定してください。"
       );
     }
-
-    if (this.src.length < this.lower) {
-      throw Error(
-        "下限は入力された文章の文字数よりも小さくする必要があります。"
-      );
-    }
   }
 
   splitText() {
