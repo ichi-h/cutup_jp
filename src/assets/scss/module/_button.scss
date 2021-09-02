@@ -62,3 +62,22 @@
     }
   }
 }
+
+.sns-links {
+  display: flex;
+  justify-content: center;
+
+  .icon-github-circled {
+    font-size: $font-xl;
+    color: white;
+    transition: 0.1s;
+  }
+
+  .icon-github-circled:hover {
+    color: $main-color;
+  }
+  .icon-github-circled:active {
+    color: $main-color;
+    filter: brightness(90%);
+  }
+}
