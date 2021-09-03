@@ -128,12 +128,14 @@ export class Cutup {
   }
 
   /**
-   * ランダムにsentenceを選択する
+   * 指定されたheadを持つsentenceをランダムに選択する
    *
+   * @param {Number} head 文頭の区切り文字
+   * @param {Array<Object>} sentences sentenceの集合
    * @return {Object} sentence
    */
-  pickupSentences(target, sentences) {
-    let selected = sentences.filter((sentence) => target === sentence.head);
+  pickupSentence(head, sentences) {
+    let selected = sentences.filter((sentence) => head === sentence.head);
     let i = Math.floor(Math.random() * selected.length);
     return selected[i];
   }
@@ -141,31 +143,34 @@ export class Cutup {
   /**
    * 複数のsentenceの値をランダムに組み合わせる
    *
-   * headがtargetと同じ値を持つsentenceを取得し、
+   * headがprevTailと同じ値を持つsentenceを取得し、
    * そのvalueをresultに結合する操作を、下限を超えるまで繰り返す。<br />
    * 上限を超えた場合は、最初から試行をやり直す。
    *
+   * @param {Array<Object>} sentences sentenceの集合
+   * @param {Number} prevTail 直前のセンテンスのtail
+   * @param {String} result 生成された文章
    * @return {String} カットアップの生成結果
    */
   combineSentences(sentences) {
-    return (target, result) => {
+    return (prevTail, result) => {
       const combine = this.combineSentences(sentences);
 
       if (this.limit.upper < result.length) {
         return combine(0, "");
       }
 
-      if (this.limit.lower <= result.length && target === 0) {
+      if (this.limit.lower <= result.length && prevTail === 0) {
         return result;
       }
 
-      let sentence = this.pickupSentences(target, sentences);
-      let newTarget = ((target) => {
-        if (target === 1) return 0;
-        else return target;
+      let sentence = this.pickupSentence(prevTail, sentences);
+      let curTail = ((tail) => {
+        if (tail === 1) return 0;
+        else return tail;
       })(sentence.tail);
 
-      return combine(newTarget, result + sentence.value);
+      return combine(curTail, result + sentence.value);
     };
   }
 }
