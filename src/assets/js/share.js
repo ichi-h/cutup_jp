@@ -25,8 +25,14 @@ const openShareLink = (target) => {
   window.open(shareURL);
 };
 
-["twitter", "facebook", "pocket"].forEach((target) => {
-  document
-    .getElementById(`share-${target}`)
-    .addEventListener("click", () => openShareLink(target), false);
-});
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    ["twitter", "facebook", "pocket"].forEach((target) => {
+      document
+        .getElementById(`share-${target}`)
+        .addEventListener("click", () => openShareLink(target), false);
+    });
+  },
+  false
+);

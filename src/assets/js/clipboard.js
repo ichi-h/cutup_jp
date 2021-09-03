@@ -1,12 +1,20 @@
 import { popover } from "./popover";
 
-// Copyボタンクリック時の挙動を追加
-document.getElementById("copy").addEventListener(
-  "click",
+/**
+ * カットアップの結果をクリップボードにコピー
+ */
+const copyResult = () => {
+  let text = document.getElementById("result").value;
+  navigator.clipboard.writeText(text);
+  popover("popover-copy", 2000);
+};
+
+document.addEventListener(
+  "DOMContentLoaded",
   () => {
-    let text = document.getElementById("result").value;
-    navigator.clipboard.writeText(text);
-    popover("popover-copy", 2000);
+    document
+      .getElementById("copy")
+      .addEventListener("click", copyResult, false);
   },
   false
 );
