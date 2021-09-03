@@ -63,16 +63,12 @@
       </div>
 
       <div class="l-form">
-        <form
-          class="form"
-          onsubmit="dispatch({ type: 'Cutup' }); return false;"
-        >
+        <form class="form" id="form">
           <h2 class="text text-h2">入力</h2>
           <textarea
             class="textarea textarea-src"
             name="src"
             id="src"
-            oninput="dispatch({ type: 'Change', target: 'src', newValue: this.value })"
             required
           ></textarea>
 
@@ -89,7 +85,6 @@
                       type="text"
                       name="start"
                       id="start"
-                      oninput="dispatch({ type: 'Change', target: 'start', newValue: this.value })"
                       required
                     />
                   </li>
@@ -100,7 +95,6 @@
                       type="text"
                       name="end"
                       id="end"
-                      oninput="dispatch({ type: 'Change', target: 'end', newValue: this.value })"
                       required
                     />
                   </li>
@@ -111,7 +105,6 @@
                       type="text"
                       name="middle"
                       id="middle"
-                      oninput="dispatch({ type: 'Change', target: 'middle', newValue: this.value })"
                       required
                     />
                   </li>
@@ -125,19 +118,12 @@
                       name="lower"
                       id="lower"
                       min="1"
-                      oninput="dispatch({ type: 'Change', target: 'lower', newValue: this.value })"
                       required
                     />
                   </li>
                   <li>
                     <label class="label" for="upper">上限:</label>
-                    <input
-                      type="number"
-                      name="upper"
-                      id="upper"
-                      oninput="dispatch({ type: 'Change', target: 'upper', newValue: this.value })"
-                      required
-                    />
+                    <input type="number" name="upper" id="upper" required />
                   </li>
                 </ul>
               </ul>
