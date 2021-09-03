@@ -53,7 +53,7 @@ export class Cutup {
   generateText() {
     this.checkProps();
     let sentences = this.splitText();
-    return this.combineSentences(sentences)(0, "");
+    return this.combineSentences(sentences, 0, "");
   }
 
   /**
@@ -91,51 +91,55 @@ export class Cutup {
       return segmenter.segment(this.src);
     };
 
-    const createSentences = (segs) => (acc, value, head, i) => {
-      const create = createSentences(segs);
-
+    const createSentences = (segs, acc, curValue, curHead, i) => {
       if (i === segs.length - 1) {
         return acc.concat({
-          value: value + segs[i],
-          head: head,
+          value: curValue + segs[i],
+          head: curHead,
           tail: 0,
         });
       }
 
       if (!this.splitPoint[segs[i]]) {
-        return create(acc, value + segs[i], head, i + 1);
+        return createSentences(segs, acc, curValue + segs[i], curHead, i + 1);
       }
 
       if (this.splitPoint[segs[i]] === 1) {
         let newList = acc.concat({
-          value: value + segs[i],
-          head: head,
+          value: curValue + segs[i],
+          head: curHead,
           tail: 0,
         });
-        return create(newList, segs[i + 1], 0, i + 2);
+        return createSentences(segs, newList, segs[i + 1], 0, i + 2);
       }
 
       let newList = acc.concat({
-        value: value,
-        head: head,
+        value: curValue,
+        head: curHead,
         tail: this.splitPoint[segs[i]],
       });
-      return create(newList, segs[i], this.splitPoint[segs[i]], i + 1);
+      return createSentences(
+        segs,
+        newList,
+        segs[i],
+        this.splitPoint[segs[i]],
+        i + 1
+      );
     };
 
     let segs = createSegments();
-    return createSentences(segs)([], "", 0, 0);
+    return createSentences(segs, [], "", 0, 0);
   }
 
   /**
    * 指定されたheadを持つsentenceをランダムに選択する
    *
    * @param {Number} head 文頭の区切り文字
-   * @param {Array<Object>} sentences sentenceの集合
+   * @param {Array<Object>} sents sentenceの集合
    * @return {Object} sentence
    */
-  pickupSentence(head, sentences) {
-    let selected = sentences.filter((sentence) => head === sentence.head);
+  pickupSentence(sents, head) {
+    let selected = sents.filter((sentence) => head === sentence.head);
     let i = Math.floor(Math.random() * selected.length);
     return selected[i];
   }
@@ -147,30 +151,26 @@ export class Cutup {
    * そのvalueをresultに結合する操作を、下限を超えるまで繰り返す。<br />
    * 上限を超えた場合は、最初から試行をやり直す。
    *
-   * @param {Array<Object>} sentences sentenceの集合
+   * @param {Array<Object>} sents sentenceの集合
    * @param {Number} prevTail 直前のセンテンスのtail
    * @param {String} result 生成された文章
    * @return {String} カットアップの生成結果
    */
-  combineSentences(sentences) {
-    return (prevTail, result) => {
-      const combine = this.combineSentences(sentences);
+  combineSentences(sents, prevTail, result) {
+    if (this.limit.upper < result.length) {
+      return this.combineSentences(sents, 0, "");
+    }
 
-      if (this.limit.upper < result.length) {
-        return combine(0, "");
-      }
+    if (this.limit.lower <= result.length && prevTail === 0) {
+      return result;
+    }
 
-      if (this.limit.lower <= result.length && prevTail === 0) {
-        return result;
-      }
+    let newSent = this.pickupSentence(sents, prevTail);
+    let curTail = ((tail) => {
+      if (tail === 1) return 0;
+      else return tail;
+    })(newSent.tail);
 
-      let sentence = this.pickupSentence(prevTail, sentences);
-      let curTail = ((tail) => {
-        if (tail === 1) return 0;
-        else return tail;
-      })(sentence.tail);
-
-      return combine(curTail, result + sentence.value);
-    };
+    return this.combineSentences(sents, curTail, result + newSent.value);
   }
 }
