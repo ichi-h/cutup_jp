@@ -57,9 +57,8 @@ SMACSS では、"Base, Layout, Module, State, Theme" という 5 つのカテゴ
 - There
   - UI の見た目の上書き・変更
 
-cutup_jp では Base で CSS のリセットや基本的なスタイルの決定、Layout で大まかなレイアウトの構築、Module で再利用可能なモジュールの作成、といったスタンスで設計しています。  
-また、State は必要となった Module と同じファイルに記述しています。  
-一方、現状では There は使用していません。
+cutup_jp では Base で CSS のリセットや基本的なスタイルの決定、Layout で大まかなレイアウトの構築、Module で再利用可能なモジュールの作成、といったスタンスで設計しています。State は必要となった Module と同じファイルに記述しています。  
+また、現状では There は使用していません。
 
 詳細は、[/src/assets/scss](https://github.com/ippee/cutup_jp/blob/main/src/assets/scss) の各ファイルをご覧ください。
 
