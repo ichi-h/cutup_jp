@@ -1,4 +1,10 @@
-const share = (target) => {
+/**
+ * 対象プラットフォームへの共有リンクを開く
+ *
+ * @param {String} target プラットフォーム名 (twitter, facebook, pocket)
+ */
+const openShareLink = (target) => {
+  // 対象プラットフォームへの共有リンクの発行
   const shareURL = ((target) => {
     let text = `${document.title} - ${
       document.getElementsByName("description")[0].content
@@ -22,5 +28,5 @@ const share = (target) => {
 ["twitter", "facebook", "pocket"].forEach((target) => {
   document
     .getElementById(`share-${target}`)
-    .addEventListener("click", () => share(target), false);
+    .addEventListener("click", () => openShareLink(target), false);
 });
