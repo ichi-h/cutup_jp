@@ -1,5 +1,6 @@
 import { popover } from "./popover";
 
+// Copyボタンクリック時の挙動を追加
 document.getElementById("copy").addEventListener(
   "click",
   () => {
