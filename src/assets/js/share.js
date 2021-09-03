@@ -1,5 +1,5 @@
 const share = (target) => {
-  const shareURL = (target) => {
+  const shareURL = ((target) => {
     let text = `${document.title} - ${
       document.getElementsByName("description")[0].content
     }`;
@@ -14,9 +14,9 @@ const share = (target) => {
       default:
         throw Error("Received an unknown target.");
     }
-  };
+  })(target);
 
-  window.open(shareURL(target));
+  window.open(shareURL);
 };
 
 ["twitter", "facebook", "pocket"].forEach((target) => {

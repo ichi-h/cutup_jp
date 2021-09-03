@@ -63,27 +63,30 @@ const model = {
  * @param {Object} msg メッセージ
  */
 const update = (model, view) => (msg) => {
-  let targets;
+  // 更新されたステート名を取得
+  let targets = (() => {
+    switch (msg.type) {
+      case "Change":
+        model[msg.target].value = msg.newValue;
 
-  switch (msg.type) {
-    case "Change":
-      model[msg.target].value = msg.newValue;
-      targets = [msg.target];
-      break;
+        // クライアント側のフォームの変更をモデルに反映しているため、
+        // viewの更新を行う必要はない
+        return [];
 
-    case "Cutup":
-      try {
-        let cutup = Cutup.newInstanceFromModel(model);
-        model.result.value = cutup.generateText();
-      } catch (e) {
-        alert(e);
-      }
-      targets = ["result"];
-      break;
+      case "Cutup":
+        try {
+          let cutup = Cutup.newInstanceFromModel(model);
+          model.result.value = cutup.generateText();
+          return ["result"];
+        } catch (e) {
+          alert(e);
+          return [];
+        }
 
-    default:
-      throw Error("Received an unknown message.");
-  }
+      default:
+        throw Error("Received an unknown message.");
+    }
+  })();
 
   view(model, targets);
 };

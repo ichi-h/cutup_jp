@@ -160,12 +160,12 @@ export class Cutup {
       }
 
       let sentence = this.pickupSentences(target, sentences);
-      let newTarget = (target) => {
+      let newTarget = ((target) => {
         if (target === 1) return 0;
         else return target;
-      };
+      })(sentence.tail);
 
-      return combine(newTarget(sentence.tail), result + sentence.value);
+      return combine(newTarget, result + sentence.value);
     };
   }
 }
