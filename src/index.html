@@ -63,12 +63,21 @@
       </div>
 
       <div class="l-form">
-        <form class="form" id="form">
+        <form
+          class="form"
+          id="form"
+          onsubmit="dispatch({ type: 'Cutup' }); return false;"
+        >
           <h2 class="text text-h2">入力</h2>
           <textarea
             class="textarea textarea-src"
             name="src"
-            id="src"
+            state="src"
+            oninput="dispatch({
+              type: 'Change',
+              target: 'src',
+              newValue: this.value,
+            })"
             required
           ></textarea>
 
@@ -84,7 +93,12 @@
                       class="form-text"
                       type="text"
                       name="start"
-                      id="start"
+                      state="start"
+                      oninput="dispatch({
+                        type: 'Change',
+                        target: 'start',
+                        newValue: this.value,
+                      })"
                       required
                     />
                   </li>
@@ -94,7 +108,12 @@
                       class="form-text"
                       type="text"
                       name="end"
-                      id="end"
+                      state="end"
+                      oninput="dispatch({
+                        type: 'Change',
+                        target: 'end',
+                        newValue: this.value,
+                      })"
                       required
                     />
                   </li>
@@ -104,7 +123,12 @@
                       class="form-text"
                       type="text"
                       name="middle"
-                      id="middle"
+                      state="middle"
+                      oninput="dispatch({
+                        type: 'Change',
+                        target: 'middle',
+                        newValue: this.value,
+                      })"
                       required
                     />
                   </li>
@@ -116,14 +140,29 @@
                     <input
                       type="number"
                       name="lower"
-                      id="lower"
+                      state="lower"
+                      oninput="dispatch({
+                        type: 'Change',
+                        target: 'lower',
+                        newValue: this.value,
+                      })"
                       min="1"
                       required
                     />
                   </li>
                   <li>
                     <label class="label" for="upper">上限:</label>
-                    <input type="number" name="upper" id="upper" required />
+                    <input
+                      type="number"
+                      name="upper"
+                      state="upper"
+                      oninput="dispatch({
+                        type: 'Change',
+                        target: 'upper',
+                        newValue: this.value,
+                      })"
+                      required
+                    />
                   </li>
                 </ul>
               </ul>
@@ -138,8 +177,9 @@
         <h2 class="text text-h2">出力</h2>
         <textarea
           class="textarea textarea-result"
-          name="result"
           id="result"
+          name="result"
+          state="result"
         ></textarea>
 
         <div class="popover-outer">

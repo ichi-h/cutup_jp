@@ -5,12 +5,12 @@ describe("cutup", () => {
 
   beforeEach(() => {
     const model = {
-      src: { value: "隣の客はよく柿食う客だ" },
-      start: { value: "「" },
-      end: { value: "。,」,？" },
-      middle: { value: "は,へ,を,の,で,から,に,て,が,も,、" },
-      lower: { value: 20 },
-      upper: { value: 30 },
+      src: "隣の客はよく柿食う客だ",
+      start: "「",
+      end: "。,」,？",
+      middle: "は,へ,を,の,で,から,に,て,が,も,、",
+      lower: 20,
+      upper: 30,
     };
 
     cutup = Cutup.newInstanceFromModel(model);

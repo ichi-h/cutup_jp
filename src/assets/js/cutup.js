@@ -24,19 +24,19 @@ export class Cutup {
    * @return {Cutup} Cutupインスタンス
    */
   static newInstanceFromModel(model) {
-    let src = model.src.value.replace(/\n/g, "");
+    let src = model.src.replace(/\n/g, "");
     let limits = {
-      lower: model.lower.value,
-      upper: model.upper.value,
+      lower: model.lower,
+      upper: model.upper,
     };
 
-    let start = model.start.value
+    let start = model.start
       .split(",")
       .reduce((acc, seg) => ({ ...acc, [seg]: 0 }), {});
-    let end = model.end.value
+    let end = model.end
       .split(",")
       .reduce((acc, seg) => ({ ...acc, [seg]: 1 }), {});
-    let middle = model.middle.value
+    let middle = model.middle
       .split(",")
       .reduce((acc, seg, i) => ({ ...acc, [seg]: i + 2 }), {});
 
