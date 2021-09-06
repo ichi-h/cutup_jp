@@ -40,7 +40,6 @@ const model = {
  * @param {Object} msg メッセージ
  */
 const update = (model, view) => (msg) => {
-  console.log(msg);
   // modelの更新、及びviewによって反映するステートの名前を取得
   let targets = (() => {
     switch (msg.type) {
