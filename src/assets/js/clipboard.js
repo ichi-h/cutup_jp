@@ -1,11 +1,12 @@
+import { useStateValue } from "./main";
 import { popover } from "./popover";
 
 /**
  * カットアップの結果をクリップボードにコピー
  */
 const copyResult = () => {
-  let text = document.getElementById("result").value;
-  navigator.clipboard.writeText(text);
+  const result = useStateValue("result");
+  navigator.clipboard.writeText(result);
   popover("popover-copy", 2000);
 };
 

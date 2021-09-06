@@ -4,6 +4,8 @@ import "./clipboard";
 
 /**
  * アプリケーションの状態
+ *
+ * モデルが保持する各状態をステートと呼ぶ。
  */
 const model = {
   // 星 - 岡本かの子 (https://www.aozora.gr.jp/cards/000076/files/1291_23059.html)
@@ -26,6 +28,19 @@ const model = {
   lower: 50,
   upper: 60,
   result: "",
+};
+
+/**
+ * ステートの取得
+ *
+ * @param {String} stateName ステート名
+ * @returns {any} ステート
+ */
+export const useStateValue = (stateName) => {
+  if (!Object.keys(model).includes(stateName)) {
+    throw Error(`ステート名 "${stateName}" はmodelに存在しません。`);
+  }
+  return model[stateName];
 };
 
 /**
