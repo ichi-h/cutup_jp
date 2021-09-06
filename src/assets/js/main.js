@@ -107,7 +107,29 @@ const view = (model, targets) => {
 
 const main = (model, update, view) => {
   view(model, Object.keys(model)); // viewの初期化
-  window.dispatch = update(model, view); // クライアント側の操作内容を発信する関数
+  const dispatch = update(model, view); // クライアント側の操作内容を発信する関数
+
+  // dispatchの登録
+  ["src", "start", "end", "middle", "lower", "upper"].forEach((state) => {
+    document.getElementById(`form-${state}`).addEventListener(
+      "input",
+      (e) => {
+        dispatch({
+          type: "Change",
+          target: state,
+          newValue: e.currentTarget.value,
+        });
+      },
+      false
+    );
+  });
+
+  ["form"].forEach((state) => {
+    document.getElementById(state).onsubmit = () => {
+      dispatch({ type: "Cutup" });
+      return false;
+    };
+  });
 };
 
 document.addEventListener(

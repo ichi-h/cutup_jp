@@ -63,21 +63,13 @@
       </div>
 
       <div class="l-form">
-        <form
-          class="form"
-          id="form"
-          onsubmit="dispatch({ type: 'Cutup' }); return false;"
-        >
+        <form class="form" id="form">
           <h2 class="text text-h2">入力</h2>
           <textarea
             class="textarea textarea-src"
+            id="form-src"
             name="src"
             state="src"
-            oninput="dispatch({
-              type: 'Change',
-              target: 'src',
-              newValue: this.value,
-            })"
             required
           ></textarea>
 
@@ -91,14 +83,10 @@
                     <label class="label" for="start">文頭:</label>
                     <input
                       class="form-text"
+                      id="form-start"
                       type="text"
                       name="start"
                       state="start"
-                      oninput="dispatch({
-                        type: 'Change',
-                        target: 'start',
-                        newValue: this.value,
-                      })"
                       required
                     />
                   </li>
@@ -106,14 +94,10 @@
                     <label class="label" for="end">文末:</label>
                     <input
                       class="form-text"
+                      id="form-end"
                       type="text"
                       name="end"
                       state="end"
-                      oninput="dispatch({
-                        type: 'Change',
-                        target: 'end',
-                        newValue: this.value,
-                      })"
                       required
                     />
                   </li>
@@ -121,14 +105,10 @@
                     <label class="label" for="middle">文中:</label>
                     <input
                       class="form-text"
+                      id="form-middle"
                       type="text"
                       name="middle"
                       state="middle"
-                      oninput="dispatch({
-                        type: 'Change',
-                        target: 'middle',
-                        newValue: this.value,
-                      })"
                       required
                     />
                   </li>
@@ -138,14 +118,10 @@
                   <li>
                     <label class="label" for="lower">下限:</label>
                     <input
+                      id="form-lower"
                       type="number"
                       name="lower"
                       state="lower"
-                      oninput="dispatch({
-                        type: 'Change',
-                        target: 'lower',
-                        newValue: this.value,
-                      })"
                       min="1"
                       required
                     />
@@ -153,14 +129,10 @@
                   <li>
                     <label class="label" for="upper">上限:</label>
                     <input
+                      id="form-upper"
                       type="number"
                       name="upper"
                       state="upper"
-                      oninput="dispatch({
-                        type: 'Change',
-                        target: 'upper',
-                        newValue: this.value,
-                      })"
                       required
                     />
                   </li>
