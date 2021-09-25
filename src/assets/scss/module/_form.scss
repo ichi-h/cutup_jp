@@ -36,7 +36,9 @@
 
   .accordion-summary {
     text-align: center;
+    margin: 0 auto;
     font-size: $font-s;
+    width: 10rem;
     user-select: none;
     cursor: pointer;
   }
