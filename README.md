@@ -14,53 +14,36 @@
 
 - HTML
 - JavaScript
-  - MVU Architecture
-- SCSS
-  - SMACSS
 - Other tools
   - Jest
   - parcel
   - prettier etc.
 
-### MVU Architecture
+## 使い方
 
-cutup_jp は、**MVU Architecture** を採用しています。
-
-MVU とは、"Model, View, Update" の略称であり、それぞれ以下のような役割を担っています。
-
-- Model
-  - アプリケーションの状態（ステート）の保持
-- View
-  - Model を HTML に反映
-- Update
-  - Model の更新
-
-MVU Architecture では、クライアント側の何らかのアクションに応じて Model を更新し（Update）、その Model を HTML に反映する（View）といったサイクルの上でアプリケーションを構築します。
-
-cutup_jp ではこの仕組みを Vanilla JS で構築し、DOM 操作の簡易的な最適化まで行っています。  
-詳細は、[/src/assets/js/main.js](https://github.com/ippee/cutup_jp/blob/main/src/assets/js/main.js) をご覧ください。
-
-### SMACSS
-
-CSS の設計手法として、**SMACSS (Scalable and Modular Architecture for CSS)** を採用しています。
-
-SMACSS では、"Base, Layout, Module, State, Theme" という 5 つのカテゴリを用いてスタイルを構築します。
-
-- Base
-  - ページ全体に適用されるデフォルトのスタイル
-- Layout
-  - ページのレイアウトの決定（主要コンポーネントの構築）
-- Module
-  - ページ内の個別のコンポーネントの構築
-- State
-  - レイアウトやモジュールのスタイル拡張
-- There
-  - UI の見た目の上書き・変更
-
-cutup_jp では Base で CSS のリセットや基本的なスタイルの決定、Layout で大まかなレイアウトの構築、Module で再利用可能なモジュールの作成、といったスタンスで設計しています。State は必要となった Module と同じファイルに記述しています。  
-また、現状では There は使用していません。
-
-詳細は、[/src/assets/scss](https://github.com/ippee/cutup_jp/blob/main/src/assets/scss) の各ファイルをご覧ください。
+- 入力
+  - カットアップする文章。
+- 出力
+  - カットアップの結果を表示。
+- Cutup!
+  - 入力された文章をカットアップする。
+- Copy
+  - 出力結果をクリップボードに保存する。
+- 詳細設定
+  - 文頭
+    - カットアップによって生成される文章の文頭として用いる文字・記号。
+  - 文末
+    - カットアップによって生成される文章の文末として用いる文字・記号。
+    - 文末で指定した文字・記号の次にある文字は、自動的に文頭として設定される。
+  - 文中
+    - カットアップをする際の区切り文字となるポイント。
+  - 文の長さ
+    - 下限
+      - 生成される文章の最小の長さ。
+    - 上限
+      - 生成される文章の最大の長さ。
+      - 下限よりも小さい値を指定することはできない。
+      - 下限と上限の幅が狭い場合、文章が生成されない場合がある。
 
 ## 参考
 
