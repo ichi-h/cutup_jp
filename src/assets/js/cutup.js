@@ -53,7 +53,7 @@ export class Cutup {
   generateText() {
     this.checkProps();
     let sentences = this.splitText();
-    return this.combineSentences(sentences, 0, "");
+    return this.combineSentences(sentences);
   }
 
   /**
@@ -91,7 +91,13 @@ export class Cutup {
       return segmenter.segment(this.src);
     };
 
-    const createSentences = (segs, acc, curValue, curHead, i) => {
+    const createSentences = (
+      segs,
+      acc = [],
+      curValue = "",
+      curHead = 0,
+      i = 0
+    ) => {
       if (i === segs.length - 1) {
         return acc.concat({
           value: curValue + segs[i],
@@ -128,7 +134,7 @@ export class Cutup {
     };
 
     let segs = createSegments();
-    return createSentences(segs, [], "", 0, 0);
+    return createSentences(segs);
   }
 
   /**
@@ -156,7 +162,7 @@ export class Cutup {
    * @param {String} result 生成された文章
    * @return {String} カットアップの生成結果
    */
-  combineSentences(sents, prevTail, result) {
+  combineSentences(sents, prevTail = 0, result = "") {
     if (this.limit.upper < result.length) {
       return this.combineSentences(sents, 0, "");
     }
