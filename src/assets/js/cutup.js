@@ -172,11 +172,7 @@ export class Cutup {
     }
 
     let newSent = this.pickupSentence(sents, prevTail);
-    let curTail = ((tail) => {
-      if (tail === 1) return 0;
-      else return tail;
-    })(newSent.tail);
-
+    let curTail = newSent.tail === 1 ? 0 : newSent.tail;
     return this.combineSentences(sents, curTail, result + newSent.value);
   }
 }
