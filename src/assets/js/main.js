@@ -1,6 +1,6 @@
 import { Cutup } from "./cutup";
-import "./share";
-import "./clipboard";
+import { openShareLink } from "./share";
+import { copyResult } from "./clipboard";
 
 /**
  * アプリケーションの状態
@@ -28,19 +28,6 @@ const model = {
   lower: 50,
   upper: 60,
   result: "",
-};
-
-/**
- * ステートの取得
- *
- * @param {String} stateName ステート名
- * @returns {any} ステート
- */
-export const useStateValue = (stateName) => {
-  if (!Object.keys(model).includes(stateName)) {
-    throw Error(`ステート名 "${stateName}" はmodelに存在しません。`);
-  }
-  return model[stateName];
 };
 
 /**
@@ -107,9 +94,10 @@ const view = (model, targets) => {
 
 const main = (model, update, view) => {
   view(model, Object.keys(model)); // viewの初期化
+
   const dispatch = update(model, view); // クライアント側の操作内容を発信する関数
 
-  // dispatchの登録
+  // ハンドラの登録
   ["src", "start", "end", "middle", "lower", "upper"].forEach((state) => {
     document.getElementById(`form-${state}`).addEventListener(
       "input",
@@ -129,6 +117,16 @@ const main = (model, update, view) => {
       dispatch({ type: "Cutup" });
       return false;
     };
+  });
+
+  document
+    .getElementById("copy")
+    .addEventListener("click", () => copyResult(model.result), false);
+
+  ["twitter", "facebook", "pocket"].forEach((target) => {
+    document
+      .getElementById(`share-${target}`)
+      .addEventListener("click", () => openShareLink(target), false);
   });
 };
 
