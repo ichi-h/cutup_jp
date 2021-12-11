@@ -1,3 +1,4 @@
+import { view } from "./view";
 import { Cutup } from "../cutup";
 
 /**
@@ -8,11 +9,10 @@ import { Cutup } from "../cutup";
  * modelの更新後、view関数によってその変更をUIに反映し、その戻り値を返却する。
  *
  * @param {Object} model アプリケーションの状態
- * @param {Function} view modelをUIに反映する関数
  * @param {Object} msg メッセージ
  * @returns {any} view関数の戻り値
  */
-export const update = (model, view) => (msg) => {
+export const update = (model) => (msg) => {
   // 更新後のmodelとUI更新に関連するステート名の取得
   let [newModel, targets] = (() => {
     switch (msg.type) {

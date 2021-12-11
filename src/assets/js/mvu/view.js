@@ -24,7 +24,7 @@ export const view = (model, targets) => {
   });
 
   // イベントハンドラの登録
-  const dispatch = update(model, view); // クライアント側の操作内容を発信する関数
+  const dispatch = update(model); // クライアント側の操作内容を発信する関数
 
   ["src", "start", "end", "middle", "lower", "upper"].forEach((stateName) => {
     document.getElementById(`form-${stateName}`).addEventListener(
