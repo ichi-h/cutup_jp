@@ -1,14 +1,10 @@
 import { init, view } from "./mvu";
-import { openShareLink } from "./utils/share";
+import { setOpenShareLinkHandler } from "./utils/share";
 
 const main = () => {
-  view(init, Object.keys(init)); // viewの初期化
+  setOpenShareLinkHandler();
 
-  ["twitter", "facebook", "pocket"].forEach((target) => {
-    document
-      .getElementById(`share-${target}`)
-      .addEventListener("click", () => openShareLink(target), false);
-  });
+  view(init, Object.keys(init)); // viewの初期化
 };
 
 document.addEventListener("DOMContentLoaded", () => main(), false);

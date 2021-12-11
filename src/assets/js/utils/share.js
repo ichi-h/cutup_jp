@@ -3,7 +3,7 @@
  *
  * @param {String} target プラットフォーム名 (twitter, facebook, pocket)
  */
-export const openShareLink = (target) => {
+const openShareLink = (target) => {
   // 対象プラットフォームへの共有リンクの発行
   const shareURL = ((target) => {
     let text = `${document.title} - ${
@@ -23,4 +23,15 @@ export const openShareLink = (target) => {
   })(target);
 
   window.open(shareURL);
+};
+
+/**
+ * 共有ボタンクリック時のイベントハンドラを登録
+ */
+export const setOpenShareLinkHandler = () => {
+  ["twitter", "facebook", "pocket"].forEach((target) => {
+    document
+      .getElementById(`share-${target}`)
+      .addEventListener("click", () => openShareLink(target), false);
+  });
 };
