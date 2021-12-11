@@ -41,7 +41,11 @@ export const view = (model, targets) => {
   });
 
   document.getElementById("form").onsubmit = () => {
-    dispatch({ type: "Cutup" });
+    try {
+      dispatch({ type: "Cutup" });
+    } catch (e) {
+      alert(e);
+    }
     return false;
   };
 

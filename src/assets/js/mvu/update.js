@@ -21,13 +21,8 @@ export const update = (model, view) => (msg) => {
         return [{ ...model, [msg.target]: msg.newValue }, []];
 
       case "Cutup":
-        try {
-          let cutup = Cutup.newInstanceFromModel(model);
-          return [{ ...model, result: cutup.generateText() }, ["result"]];
-        } catch (e) {
-          alert(e);
-          return [];
-        }
+        let cutup = Cutup.newInstanceFromModel(model);
+        return [{ ...model, result: cutup.generateText() }, ["result"]];
 
       default:
         throw Error("Received an unknown message.");
