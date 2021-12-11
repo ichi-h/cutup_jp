@@ -26,8 +26,8 @@ export class Cutup {
   static newInstanceFromModel(model) {
     let src = model.src.replace(/\n/g, "");
     let limits = {
-      lower: model.lower,
-      upper: model.upper,
+      lower: Number(model.lower),
+      upper: Number(model.upper),
     };
 
     let start = model.start
