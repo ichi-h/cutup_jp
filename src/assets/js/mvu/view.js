@@ -27,17 +27,13 @@ export const view = (model, targets) => {
   const dispatch = update(model); // クライアント側の操作内容を発信する関数
 
   ["src", "start", "end", "middle", "lower", "upper"].forEach((stateName) => {
-    document.getElementById(`form-${stateName}`).addEventListener(
-      "input",
-      (e) => {
-        dispatch({
-          type: "Change",
-          target: stateName,
-          newValue: e.currentTarget.value,
-        });
-      },
-      false
-    );
+    document.getElementById(`form-${stateName}`).oninput = (e) => {
+      dispatch({
+        type: "Change",
+        target: stateName,
+        newValue: e.currentTarget.value,
+      });
+    };
   });
 
   document.getElementById("form").onsubmit = () => {
@@ -50,8 +46,7 @@ export const view = (model, targets) => {
   };
 
   if (targets.includes("result")) {
-    document
-      .getElementById("copy")
-      .addEventListener("click", () => copyResult(model.result), false);
+    const copyBtn = document.getElementById("copy");
+    copyBtn.onclick = () => copyResult(model.result);
   }
 };
