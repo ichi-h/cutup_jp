@@ -35,28 +35,25 @@ const model = {
  *
  * メッセージというクライアントの操作内容を元にmodelを更新する。
  * メッセージには "type" という属性があり、そこに具体的な操作内容が記述されている。<br />
- * modelの更新後、view関数によってその変更をHTMLに反映する。
+ * modelの更新後、view関数によってその変更をUIに反映し、その戻り値を返却する。
  *
  * @param {Object} model アプリケーションの状態
- * @param {Function} view modelをHTMLに反映する関数
+ * @param {Function} view modelをUIに反映する関数
  * @param {Object} msg メッセージ
+ * @returns {any} view関数の戻り値
  */
 const update = (model, view) => (msg) => {
-  // modelの更新、及びviewによって反映するステートの名前を取得
-  let targets = (() => {
+  // 更新後のmodelとUI更新に関連するステート名の取得
+  let [newModel, targets] = (() => {
     switch (msg.type) {
       case "Change":
         model[msg.target] = msg.newValue;
-
-        // クライアント側のフォームの変更をモデルに反映しているため、
-        // viewの更新を行う必要はない
-        return [];
+        return [{ ...model, [msg.target]: msg.newValue }, []];
 
       case "Cutup":
         try {
           let cutup = Cutup.newInstanceFromModel(model);
-          model.result = cutup.generateText();
-          return ["result"];
+          return [{ ...model, result: cutup.generateText() }, ["result"]];
         } catch (e) {
           alert(e);
           return [];
@@ -67,18 +64,19 @@ const update = (model, view) => (msg) => {
     }
   })();
 
-  view(model, targets);
+  return view(newModel, targets);
 };
 
 /**
- * modelをHTMLに反映
+ * modelをUIに反映
  *
- * targetsにはステート名が格納されており、そのステートに関連するノードのみを更新する。
+ * targetsで指定されたステートと、modelが関連するイベントハンドラをUIに反映する。
  *
  * @param {Object} model アプリケーションの状態
  * @param {Array<String>} targets 対象のステート名
  */
 const view = (model, targets) => {
+  // 各ステートの反映
   targets.forEach((target) => {
     document.querySelectorAll(`[state="${target}"]`).forEach((elem) => {
       switch (elem.tagName) {
@@ -90,21 +88,17 @@ const view = (model, targets) => {
       }
     });
   });
-};
 
-const main = (model, update, view) => {
-  view(model, Object.keys(model)); // viewの初期化
-
+  // イベントハンドラの登録
   const dispatch = update(model, view); // クライアント側の操作内容を発信する関数
 
-  // ハンドラの登録
-  ["src", "start", "end", "middle", "lower", "upper"].forEach((state) => {
-    document.getElementById(`form-${state}`).addEventListener(
+  ["src", "start", "end", "middle", "lower", "upper"].forEach((stateName) => {
+    document.getElementById(`form-${stateName}`).addEventListener(
       "input",
       (e) => {
         dispatch({
           type: "Change",
-          target: state,
+          target: stateName,
           newValue: e.currentTarget.value,
         });
       },
@@ -112,16 +106,20 @@ const main = (model, update, view) => {
     );
   });
 
-  ["form"].forEach((state) => {
-    document.getElementById(state).onsubmit = () => {
-      dispatch({ type: "Cutup" });
-      return false;
-    };
-  });
+  document.getElementById("form").onsubmit = () => {
+    dispatch({ type: "Cutup" });
+    return false;
+  };
 
-  document
-    .getElementById("copy")
-    .addEventListener("click", () => copyResult(model.result), false);
+  if (targets.includes("result")) {
+    document
+      .getElementById("copy")
+      .addEventListener("click", () => copyResult(model.result), false);
+  }
+};
+
+const main = () => {
+  view(model, Object.keys(model)); // viewの初期化
 
   ["twitter", "facebook", "pocket"].forEach((target) => {
     document
@@ -130,8 +128,4 @@ const main = (model, update, view) => {
   });
 };
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => main(model, update, view),
-  false
-);
+document.addEventListener("DOMContentLoaded", () => main(), false);
