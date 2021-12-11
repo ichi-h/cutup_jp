@@ -57,7 +57,7 @@ describe("cutup", () => {
 
   describe("異常系", () => {
     test("上限と下限が矛盾しているとき", () => {
-      cutup.limit.lower = 100;
+      cutup.limits.lower = 100;
       try {
         cutup.checkProps();
       } catch (_) {

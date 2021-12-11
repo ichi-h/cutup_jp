@@ -14,7 +14,7 @@ export class Cutup {
   constructor(src, splitPoint, limits) {
     this.src = src;
     this.splitPoint = splitPoint;
-    this.limit = limits;
+    this.limits = limits;
   }
 
   /**
@@ -63,7 +63,7 @@ export class Cutup {
    * 不正な値が存在する場合、例外を送出する。
    */
   checkProps() {
-    if (this.limit.upper < this.limit.lower) {
+    if (this.limits.upper < this.limits.lower) {
       throw Error(
         "下限よりも上限の値の方が小さくなっています。\n上限の方が大きくなるよう設定してください。"
       );
@@ -163,11 +163,11 @@ export class Cutup {
    * @return {String} カットアップの生成結果
    */
   combineSentences(sents, prevTail = 0, result = "") {
-    if (this.limit.upper < result.length) {
+    if (this.limits.upper < result.length) {
       return this.combineSentences(sents, 0, "");
     }
 
-    if (this.limit.lower <= result.length && prevTail === 0) {
+    if (this.limits.lower <= result.length && prevTail === 0) {
       return result;
     }
 
