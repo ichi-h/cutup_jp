@@ -53,9 +53,9 @@ describe("update", () => {
       const [newModel, targets] = dispatch({
         type: "Change",
         target: "lower",
-        newValue: 0,
+        newValue: "0",
       });
-      expect(newModel.lower).toBe(0);
+      expect(newModel.lower).toBe("0");
       expect(targets.length).toBe(0);
     });
 
@@ -63,9 +63,9 @@ describe("update", () => {
       const [newModel, targets] = dispatch({
         type: "Change",
         target: "upper",
-        newValue: 0,
+        newValue: "0",
       });
-      expect(newModel.upper).toBe(0);
+      expect(newModel.upper).toBe("0");
       expect(targets.length).toBe(0);
     });
   });

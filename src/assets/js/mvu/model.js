@@ -21,7 +21,7 @@ export const init = {
   start: "「",
   end: "。,」,？",
   middle: "は,へ,を,の,で,から,に,て,が,も,、",
-  lower: 50,
-  upper: 60,
+  lower: "50",
+  upper: "60",
   result: "",
 };
