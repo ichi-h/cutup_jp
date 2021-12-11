@@ -1,5 +1,5 @@
 import { model, view } from "./mvu";
-import { openShareLink } from "./share";
+import { openShareLink } from "./utils/share";
 
 const main = () => {
   view(model, Object.keys(model)); // viewの初期化
