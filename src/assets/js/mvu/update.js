@@ -17,7 +17,6 @@ export const update = (model) => (msg) => {
   let [newModel, targets] = (() => {
     switch (msg.type) {
       case "Change":
-        model[msg.target] = msg.newValue;
         return [{ ...model, [msg.target]: msg.newValue }, []];
 
       case "Cutup":
