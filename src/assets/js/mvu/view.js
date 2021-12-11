@@ -4,7 +4,7 @@ import { copyResult } from "../clipboard";
 /**
  * modelをUIに反映
  *
- * targetsで指定されたステートと、modelが関連するイベントハンドラをUIに反映する。
+ * targetsで指定されたステートと、modelに関連するイベントハンドラをUIに反映する。
  *
  * @param {Object} model アプリケーションの状態
  * @param {Array<String>} targets 対象のステート名
