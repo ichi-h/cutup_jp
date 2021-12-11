@@ -1,8 +1,8 @@
-import { model, view } from "./mvu";
+import { init, view } from "./mvu";
 import { openShareLink } from "./utils/share";
 
 const main = () => {
-  view(model, Object.keys(model)); // viewの初期化
+  view(init, Object.keys(init)); // viewの初期化
 
   ["twitter", "facebook", "pocket"].forEach((target) => {
     document

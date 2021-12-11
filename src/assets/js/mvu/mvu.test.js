@@ -1,5 +1,5 @@
 import { update } from "./update";
-import { model } from "./model";
+import { init } from "./model";
 
 jest.mock("./view", () => ({
   view: jest.fn((model, targets) => [model, targets]),
@@ -7,7 +7,7 @@ jest.mock("./view", () => ({
 
 describe("update", () => {
   describe("Change", () => {
-    const dispatch = update(model);
+    const dispatch = update(init);
 
     test("srcの更新", () => {
       const [newModel, targets] = dispatch({
@@ -71,7 +71,7 @@ describe("update", () => {
   });
 
   test("Cutup (文章生成)", () => {
-    const [newModel, targets] = update(model)({
+    const [newModel, targets] = update(init)({
       type: "Cutup",
     });
 
@@ -85,7 +85,7 @@ describe("update", () => {
   describe("異常系", () => {
     test("不明なメッセージを受け取った時", () => {
       try {
-        update(model)({ type: "Error" });
+        update(init)({ type: "Error" });
       } catch (_) {
         return;
       }
